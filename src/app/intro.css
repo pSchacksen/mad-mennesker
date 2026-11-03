@@ -368,6 +368,177 @@ html.intro-active { overflow: hidden; }
 .intro--segl.is-leaving { animation: intro-fade-out 0.8s ease 0.25s forwards; }
 .intro--segl.is-leaving .intro-scene { animation: intro-zoom 1s cubic-bezier(0.7, 0, 0.84, 0) forwards; }
 
+/* 4b · SEGLET — fire udgaver ------------------------------------- */
+.intro-caption { display: flex; flex-direction: column; align-items: center; }
+
+/* Seglet i lak: laksegl på en invitation */
+.intro--lak {
+  color: var(--color-forest);
+  background: radial-gradient(90% 80% at 50% 40%, #fdfaf3, var(--color-cream) 60%, #e7dcc7);
+}
+.intro--lak::after { opacity: 0.06; mix-blend-mode: multiply; }
+.intro--lak .intro-scene { --w: 1.7s; --t: 2.1s; }
+.intro--lak .intro-wordmark em,
+.intro--lak .intro-tagline { color: var(--color-terracotta-ink); }
+.intro--lak .intro-seal { width: min(16rem, 58cqw); color: #4a140b; }
+.intro-lak-wax {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  filter: drop-shadow(0 12px 18px rgba(90, 30, 15, 0.28));
+  scale: 0;
+  animation: intro-wax-pour 0.9s cubic-bezier(0.34, 1.4, 0.64, 1) 0.25s forwards, intro-squish 0.4s ease-out 1.15s;
+}
+.intro-wax-press {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  scale: 0.86;
+  filter: drop-shadow(0 1.5px 0 rgba(255, 200, 175, 0.45)) drop-shadow(0 -1px 0 rgba(30, 6, 2, 0.5));
+  animation: intro-press 0.45s cubic-bezier(0.5, 0, 0.75, 0) 1s forwards;
+}
+.intro--lak .intro-seal-outer,
+.intro--lak .intro-seal-inner,
+.intro--lak .intro-seal-text,
+.intro--lak .intro-seal-stamp { animation: none; opacity: 1; scale: 1; stroke-dashoffset: 0; }
+.intro--lak.is-leaving { animation: intro-slide-up 1.05s var(--ease-io) forwards; }
+
+/* Seglet som urværk: teksten tegnes rundt af en viser, seglet lægger sig ved logoet */
+@property --intro-sweep {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+.intro--ur .intro-scene { --w: 2.15s; --t: 2.45s; }
+.intro--ur .intro-seal {
+  width: min(17rem, 60cqw);
+  --dx: calc(max(2.6rem, 50cqw - 42rem + 4.1rem) - 50cqw);
+  --dy: calc(6.4rem - 50cqh);
+}
+.intro-sweep {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: conic-gradient(#000 var(--intro-sweep), transparent 0);
+  mask-image: conic-gradient(#000 var(--intro-sweep), transparent 0);
+  animation: intro-sweep 2s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+}
+.intro--ur .intro-seal-outer,
+.intro--ur .intro-seal-inner,
+.intro--ur .intro-seal-text { animation: none; opacity: 1; stroke-dashoffset: 0; }
+.intro-hand {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 50%;
+  translate: -50% 0;
+  transform-origin: 50% 100%;
+  background: linear-gradient(to top, transparent 35%, var(--color-brass));
+  opacity: 0;
+  animation: intro-hand 2s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+}
+.intro-hand::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  translate: -50% 0;
+  border-radius: 9999px;
+  background: var(--color-brass-light);
+  box-shadow: 0 0 12px 3px rgba(255, 214, 150, 0.55);
+}
+.intro--ur .intro-seal-stamp { animation-delay: 2.05s; }
+.intro--ur.is-leaving { animation: intro-fade-out 0.6s ease 0.45s forwards; }
+.intro--ur.is-leaving .intro-scene { animation: none; }
+.intro--ur.is-leaving .intro-caption { animation: intro-fade-out 0.3s ease forwards; }
+.intro--ur.is-leaving .intro-seal { animation: intro-dock 1s var(--ease-io) forwards; }
+
+/* Seglet i messing: lysglimt hen over seglet */
+.intro--glans { background: radial-gradient(70% 60% at 50% 42%, #1d2c21, #0b1712 60%, #060e0b); }
+.intro--glans .intro-scene { --w: 1.9s; --t: 2.25s; }
+.intro--glans .intro-seal {
+  width: min(21rem, 66cqw);
+  filter: brightness(0.2);
+  scale: 0.94;
+  animation: intro-emerge 1.4s var(--ease-out) 0.15s forwards;
+}
+.intro--glans .intro-seal-text { opacity: 1; animation: intro-spin 70s linear infinite; }
+.intro--glans .intro-seal-stamp {
+  background-image: linear-gradient(115deg, #8f7444 0%, #d9bf88 40%, #fff4d6 50%, #d9bf88 60%, #8f7444 100%);
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  animation: intro-stamp 0.55s cubic-bezier(0.5, 0, 0.75, 0) 0.45s forwards, intro-sheen 1.8s ease-in-out 1.1s forwards;
+}
+.intro-sparkle {
+  position: absolute;
+  top: 9%;
+  right: 15%;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #fff3d2;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px rgba(255, 232, 180, 0.95));
+  animation: intro-sparkle 1s ease 2.25s forwards;
+}
+.intro--glans.is-leaving {
+  -webkit-mask-image: radial-gradient(circle at 50% 42%, transparent var(--intro-hole), #000 calc(var(--intro-hole) + 1px));
+  mask-image: radial-gradient(circle at 50% 42%, transparent var(--intro-hole), #000 calc(var(--intro-hole) + 1px));
+  animation: intro-hole 1.1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+.intro--glans.is-leaving .intro-scene { animation: intro-zoom-soft 0.9s var(--ease-io) forwards; }
+
+/* Det rullende segl */
+.intro--rul .intro-scene { --w: 1.75s; --t: 2.1s; }
+.intro-roll { position: relative; transform-origin: 50% 100%; animation: intro-settle 0.7s ease-out 1.5s; }
+.intro--rul .intro-seal {
+  width: min(15rem, 54cqw);
+  translate: -75cqw 0;
+  rotate: -540deg;
+  animation: intro-roll-in 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+.intro--rul .intro-seal-outer,
+.intro--rul .intro-seal-inner,
+.intro--rul .intro-seal-text,
+.intro--rul .intro-seal-stamp { animation: none; opacity: 1; scale: 1; stroke-dashoffset: 0; }
+.intro-roll-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: -1.1rem;
+  width: 70%;
+  height: 1rem;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.55), transparent);
+  opacity: 0;
+  animation: intro-fade-in 0.6s ease 1.1s forwards;
+}
+.intro--rul.is-leaving { animation: intro-wipe 1.1s cubic-bezier(0.7, 0, 0.3, 1) forwards; }
+.intro--rul.is-leaving .intro-scene { animation: none; }
+.intro--rul.is-leaving .intro-caption,
+.intro--rul.is-leaving .intro-roll-shadow { animation: intro-fade-out 0.3s ease forwards; }
+.intro--rul.is-leaving .intro-seal { animation: intro-roll-out 1.1s cubic-bezier(0.7, 0, 0.3, 1) forwards; }
+
+@keyframes intro-wax-pour { 0% { scale: 0; } 60% { scale: 1.06; } 100% { scale: 1; } }
+@keyframes intro-squish { 0%, 100% { scale: 1; } 40% { scale: 0.965; } }
+@keyframes intro-press { to { opacity: 1; scale: 0.74; } }
+@keyframes intro-sweep { to { --intro-sweep: 360deg; } }
+@keyframes intro-hand { 0% { rotate: 0deg; opacity: 1; } 90% { opacity: 1; } 100% { rotate: 360deg; opacity: 0; } }
+@keyframes intro-dock { to { translate: var(--dx) var(--dy); scale: 0.16; } }
+@keyframes intro-emerge { to { filter: brightness(1) drop-shadow(0 0 40px rgba(255, 200, 120, 0.14)); scale: 1; } }
+@keyframes intro-sheen { to { background-position: 0 0; } }
+@keyframes intro-sparkle {
+  0% { opacity: 0; scale: 0; rotate: 0deg; }
+  40% { opacity: 1; scale: 1; rotate: 45deg; }
+  100% { opacity: 0; scale: 0.5; rotate: 110deg; }
+}
+@keyframes intro-zoom-soft { to { opacity: 0; transform: scale(1.35); } }
+@keyframes intro-roll-in { to { translate: 0 0; rotate: 0deg; } }
+@keyframes intro-roll-out { from { translate: 0 0; rotate: 0deg; } to { translate: 75cqw 0; rotate: 540deg; } }
+@keyframes intro-settle { 0%, 100% { rotate: 0deg; } 35% { rotate: -3deg; } 70% { rotate: 1.2deg; } }
+@keyframes intro-wipe { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 0 0 100%); } }
+
 /* 5 · FACADESKILTET ----------------------------------------------- */
 .intro--facade { background: transparent; }
 .intro--facade::after { display: none; }

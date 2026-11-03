@@ -26,7 +26,7 @@ npm run images     # genskab optimerede fotos, teksturer og OG-billeder
 | `/selskaber/` | Selskaber og forespørgsel |
 | `/besoeg/` | Adresse, åbningstider, kontakt, kort og "godt at vide" |
 | `/reservation/` | Bordreservation (preview-tilstand indtil et bookingsystem er valgt) |
-| `/design-lab/` | **Internt.** Ikke linket, `noindex`. Seks bud på intro-loaderen og asset-oversigten |
+| `/design-lab/` | **Internt.** Ikke linket, `noindex`. Intro-loaderne og asset-oversigten |
 
 ## Opdatér indhold
 
@@ -48,7 +48,7 @@ export const booking = { provider: "embed", embedUrl: "https://…" };    // /re
 
 ## Design Lab
 
-`/design-lab/` er internt (ikke linket, `noindex`). Her ligger de seks bud på intro-loaderen, som kan afspilles i en ramme eller i fuld skærm, samt en oversigt over designpakkens assets. Hver loader kan også ses på forsiden med fx `/?intro=segl`. Den loader, siden bruger, vælges med `defaultLoader` i `src/content/design.ts`.
+`/design-lab/` er internt (ikke linket, `noindex`). Her ligger buddene på intro-loaderen (fem udgaver af Seglet og de øvrige bud), som kan afspilles i en ramme eller i fuld skærm, samt en oversigt over designpakkens assets. Hver loader kan også ses på forsiden med fx `/?intro=segl`. Den loader, siden bruger, vælges med `defaultLoader` i `src/content/design.ts`.
 
 ## Billeder og brand-assets
 
@@ -80,7 +80,7 @@ Uden secret bygges og tjekkes siden stadig, men intet udgives. Når siden skal i
 
 ## Intro-loader
 
-Ved første besøg i en session vises en kort intro, før siden kommer til syne (`src/components/intro/`, styling i `src/app/intro.css`). Der er seks varianter: Globelampen, Levende lys, Bordet dækkes, Seglet, Facadeskiltet og Tre løfter. Introen varer cirka 3,5 sekunder, kan springes over med Escape eller "Spring over", og vises ikke ved reduceret bevægelse. Tilføj `?intro` (eller `?intro=<variant>`) til adressen for at se den igen.
+Ved første besøg i en session vises en kort intro, før siden kommer til syne (`src/components/intro/`, styling i `src/app/intro.css`). Siden bruger Seglet. Design Lab viser fem udgaver af seglet (Seglet, i lak, som urværk, i messing og det rullende segl) samt de øvrige bud fra første runde. Introen varer cirka 3,5 sekunder, kan springes over med Escape eller "Spring over", og vises ikke ved reduceret bevægelse. Tilføj `?intro` (eller `?intro=<variant>`) til adressen for at se den igen.
 
 ## Tilgængelighed og bevægelse
 

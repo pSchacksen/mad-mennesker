@@ -86,27 +86,130 @@ function Bordet() {
   );
 }
 
+const SEAL_TEXT = "God dansk mad · Gode mennesker · God tid · ";
+
+/** Seglets ring: ydre cirkel, prikket indre cirkel og teksten på en cirkelbane. */
+function SealRing({ textFill, children }: { textFill?: string; children?: ReactNode }) {
+  return (
+    <svg viewBox="0 0 240 240" className="intro-seal-ring" aria-hidden>
+      {children}
+      <circle className="intro-seal-outer" pathLength={1} cx="120" cy="120" r="114" />
+      <circle className="intro-seal-inner" cx="120" cy="120" r="70" />
+      <defs>
+        <path id="intro-seal-path" d="M120,120 m-92,0 a92,92 0 1,1 184,0 a92,92 0 1,1 -184,0" />
+      </defs>
+      <g className="intro-seal-text" style={textFill ? { fill: textFill } : undefined}>
+        <text>
+          <textPath href="#intro-seal-path">{SEAL_TEXT}</textPath>
+        </text>
+      </g>
+    </svg>
+  );
+}
+
 function Segl() {
   return (
     <div className="intro-scene">
       <div className="intro-seal">
-        <svg viewBox="0 0 240 240" className="intro-seal-ring" aria-hidden>
-          <circle className="intro-seal-outer" pathLength={1} cx="120" cy="120" r="114" />
-          <circle className="intro-seal-inner" cx="120" cy="120" r="70" />
-          <defs>
-            <path id="intro-seal-path" d="M120,120 m-92,0 a92,92 0 1,1 184,0 a92,92 0 1,1 -184,0" />
-          </defs>
-          <g className="intro-seal-text">
-            <text>
-              <textPath href="#intro-seal-path">God dansk mad · Gode mennesker · God tid · </textPath>
-            </text>
-          </g>
-        </svg>
+        <SealRing />
         <span className="intro-ripple" />
         <Ornament name="round-seal" className="intro-seal-stamp" />
       </div>
       <Wordmark className="intro-wordmark--small" />
       <Words words={["Slotspladsen", "·", "Randers"]} className="intro-tagline--eyebrow" />
+    </div>
+  );
+}
+
+/** Uregelmæssig lakklat (genereret én gang, så den er ens hver gang). */
+const WAX =
+  "M218.2 103.1 Q223.5 120.0 219.9 137.5 Q216.3 155.0 206.8 170.0 Q197.4 184.9 184.6 197.4 Q171.9 209.8 153.9 210.1 Q135.9 210.4 119.6 212.6 Q103.3 214.8 86.2 211.4 Q69.2 208.1 52.8 199.1 Q36.4 190.1 31.5 172.1 Q26.6 154.0 25.1 137.0 Q23.5 120.0 25.1 103.0 Q26.7 86.1 36.7 72.2 Q46.6 58.4 58.2 45.6 Q69.7 32.9 85.9 25.6 Q102.1 18.3 120.5 15.6 Q138.9 13.0 152.9 25.8 Q167.0 38.6 179.5 49.1 Q192.1 59.5 202.5 72.8 Q213.0 86.2 218.2 103.1 Z";
+
+function Lak() {
+  return (
+    <div className="intro-scene">
+      <div className="intro-seal">
+        <svg viewBox="0 0 240 240" className="intro-lak-wax" aria-hidden>
+          <defs>
+            <radialGradient id="intro-wax-fill" cx="42%" cy="36%" r="70%">
+              <stop offset="0" stopColor="#c4664a" />
+              <stop offset="0.55" stopColor="#9a3f2c" />
+              <stop offset="1" stopColor="#6e2a1d" />
+            </radialGradient>
+          </defs>
+          <path d={WAX} fill="url(#intro-wax-fill)" />
+          <circle cx="120" cy="120" r="86" fill="none" stroke="rgba(60,18,10,0.35)" strokeWidth="5" />
+          <circle cx="120" cy="120" r="86" fill="none" stroke="rgba(255,190,160,0.18)" strokeWidth="1.2" transform="translate(-1 -1.5)" />
+        </svg>
+        <div className="intro-wax-press">
+          <SealRing />
+          <Ornament name="round-seal" className="intro-seal-stamp" />
+        </div>
+      </div>
+      <Wordmark className="intro-wordmark--small" />
+      <Words words={["Du", "er", "inviteret."]} />
+    </div>
+  );
+}
+
+function Ur() {
+  return (
+    <div className="intro-scene">
+      <div className="intro-seal">
+        <div className="intro-sweep">
+          <SealRing />
+        </div>
+        <span className="intro-hand" />
+        <Ornament name="round-seal" className="intro-seal-stamp" />
+      </div>
+      <div className="intro-caption">
+        <Wordmark className="intro-wordmark--small" />
+        <Words words={["Der", "er", "god", "tid."]} />
+      </div>
+    </div>
+  );
+}
+
+function Glans() {
+  return (
+    <div className="intro-scene">
+      <div className="intro-seal">
+        <SealRing textFill="url(#intro-brass)">
+          <defs>
+            <linearGradient id="intro-brass" gradientUnits="userSpaceOnUse" x1="-240" y1="0" x2="0" y2="80">
+              <stop offset="0" stopColor="#8f7444" />
+              <stop offset="0.42" stopColor="#d9bf88" />
+              <stop offset="0.5" stopColor="#fff4d6" />
+              <stop offset="0.58" stopColor="#d9bf88" />
+              <stop offset="1" stopColor="#8f7444" />
+              <animate attributeName="x1" values="-240;240" dur="1.8s" begin="1.1s" fill="freeze" />
+              <animate attributeName="x2" values="0;480" dur="1.8s" begin="1.1s" fill="freeze" />
+            </linearGradient>
+          </defs>
+        </SealRing>
+        <Ornament name="round-seal" className="intro-seal-stamp" />
+        <Ornament name="four-point-star" className="intro-sparkle" />
+      </div>
+      <Wordmark className="intro-wordmark--small" />
+      <Words words={["God dansk mad.", "Gode mennesker.", "God tid."]} />
+    </div>
+  );
+}
+
+function Rul() {
+  return (
+    <div className="intro-scene">
+      <div className="intro-roll">
+        <span className="intro-roll-shadow" />
+        <div className="intro-seal">
+          <SealRing />
+          <Ornament name="round-seal" className="intro-seal-stamp" />
+        </div>
+      </div>
+      <div className="intro-caption">
+        <Wordmark className="intro-wordmark--small" />
+        <Words words={["Slotspladsen", "·", "Randers"]} className="intro-tagline--eyebrow" />
+      </div>
     </div>
   );
 }
@@ -159,6 +262,10 @@ function Ord() {
 }
 
 const scenes: Record<LoaderId, () => ReactNode> = {
+  lak: Lak,
+  ur: Ur,
+  glans: Glans,
+  rul: Rul,
   lampe: Lampe,
   lys: Lys,
   bordet: Bordet,

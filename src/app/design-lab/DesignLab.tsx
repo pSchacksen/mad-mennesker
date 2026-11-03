@@ -32,8 +32,8 @@ export function DesignLab() {
             Design <em className="display-italic text-brass-light">Lab</em>
           </h1>
           <p className="mt-4 max-w-2xl text-cream/80">
-            Seks bud på intro-loaderen, der møder gæsten ved første besøg. Klik på et billede for at afspille det i rammen, eller se det i fuld
-            skærm. Standarden vælges i <code className="text-brass-light">src/content/design.ts</code>.
+            Seglet er valgt som intro-loader. Her er fem udgaver af det, og længere nede de øvrige bud. Klik på et billede for at afspille det i
+            rammen, eller se det i fuld skærm. Standarden vælges i <code className="text-brass-light">src/content/design.ts</code>.
           </p>
 
           <div role="tablist" aria-label="Design Lab-sektioner" className="mt-10 flex flex-wrap gap-2">
@@ -104,34 +104,46 @@ function LoaderGallery() {
 
   return (
     <div className="mx-auto max-w-[76rem] px-5 py-14 md:px-10 md:py-20">
-      <ol className="grid gap-x-8 gap-y-14 md:grid-cols-2">
-        {loaderOptions.map((o, i) => (
-          <li key={o.id}>
-            <LoaderFrame id={o.id} label={o.label} />
-            <div className="mt-5 flex items-baseline justify-between gap-4">
-              <h2 className="text-3xl">
-                <span className="mr-3 font-sans text-sm font-semibold text-brass-ink">{String(i + 1).padStart(2, "0")}</span>
-                {o.label}
-              </h2>
-              {o.id === defaultLoader && (
-                <span className="shrink-0 rounded-full bg-forest px-3 py-1 text-[0.65rem] font-semibold tracking-[0.18em] text-cream uppercase">
-                  På siden nu
-                </span>
-              )}
-            </div>
-            <p className="mt-2 max-w-xl text-ink-muted">{o.description}</p>
-            <div className="mt-5 flex flex-wrap items-center gap-3">
-              <button type="button" onClick={() => play(o.id)} className={buttonStyles("forest")}>
-                Afspil i fuld skærm
-              </button>
-              {/* Almindeligt link (fuld sideindlæsning), så introen starter forfra */}
-              <a href={`/?intro=${o.id}`} className={buttonStyles("ghost-dark")}>
-                Se på forsiden
-              </a>
-            </div>
-          </li>
-        ))}
-      </ol>
+      {([
+        { group: "segl", title: "Seglet", sub: "fem udgaver" },
+        { group: "andre", title: "Øvrige bud", sub: "fra første runde" },
+      ] as const).map((g, gi) => (
+        <section key={g.group} className={gi > 0 ? "mt-24 border-t border-forest/15 pt-14" : undefined}>
+          <h2 className="text-[clamp(2.2rem,4vw,3.4rem)]">
+            {g.title} <em className="display-italic text-terracotta-ink">{g.sub}</em>
+          </h2>
+          <ol className="mt-10 grid gap-x-8 gap-y-14 md:grid-cols-2">
+            {loaderOptions
+              .filter((o) => o.group === g.group)
+              .map((o, i) => (
+                <li key={o.id}>
+                  <LoaderFrame id={o.id} label={o.label} />
+                  <div className="mt-5 flex items-baseline justify-between gap-4">
+                    <h3 className="text-3xl">
+                      <span className="mr-3 font-sans text-sm font-semibold text-brass-ink">{String(i + 1).padStart(2, "0")}</span>
+                      {o.label}
+                    </h3>
+                    {o.id === defaultLoader && (
+                      <span className="shrink-0 rounded-full bg-forest px-3 py-1 text-[0.65rem] font-semibold tracking-[0.18em] text-cream uppercase">
+                        På siden nu
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-2 max-w-xl text-ink-muted">{o.description}</p>
+                  <div className="mt-5 flex flex-wrap items-center gap-3">
+                    <button type="button" onClick={() => play(o.id)} className={buttonStyles("forest")}>
+                      Afspil i fuld skærm
+                    </button>
+                    {/* Almindeligt link (fuld sideindlæsning), så introen starter forfra */}
+                    <a href={`/?intro=${o.id}`} className={buttonStyles("ghost-dark")}>
+                      Se på forsiden
+                    </a>
+                  </div>
+                </li>
+              ))}
+          </ol>
+        </section>
+      ))}
 
       {full && <IntroOverlay key={full.key} variant={full.id} leaving={full.leaving} onSkip={stop} />}
     </div>
