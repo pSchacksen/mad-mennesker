@@ -5,6 +5,8 @@ import { Footer } from "@/components/layout/Footer";
 import { Providers } from "@/components/layout/Providers";
 import { Cursor } from "@/components/layout/Cursor";
 import { VariantNotice } from "@/components/layout/VariantNotice";
+import { IntroLoader } from "@/components/layout/IntroLoader";
+import { introBootScript } from "@/lib/intro";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -27,8 +29,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="da">
+    <html lang="da" suppressHydrationWarning>
       <body>
+        <script dangerouslySetInnerHTML={{ __html: introBootScript }} />
+        <IntroLoader />
         <Providers>
           <Header />
           <main id="indhold">{children}</main>

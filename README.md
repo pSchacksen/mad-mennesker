@@ -78,6 +78,10 @@ Workflowen `.github/workflows/azure-static-web-apps.yml` bygger siden og udgiver
 
 Uden secret bygges og tjekkes siden stadig, men intet udgives. Når siden skal i luften på det rigtige domæne, tilknyttes domænet under *Custom domains*, og `NEXT_PUBLIC_SITE_URL` / `NEXT_PUBLIC_ALLOW_INDEXING` sættes som `env` på build-trinnet.
 
+## Intro-loader
+
+Ved første besøg i en session tænder en globelampe, og navnet træder frem, før mørket løfter sig fra siden (`src/components/layout/IntroLoader.tsx`, styling nederst i `globals.css`). Den vises højst ca. 3,5 sekunder, kan springes over med Escape eller "Spring over", og vises ikke ved reduceret bevægelse. Tilføj `?intro` til adressen for at se den igen.
+
 ## Tilgængelighed og bevægelse
 
 Alle animationer respekterer `prefers-reduced-motion` (indhold vises straks uden bevægelse). Dekorationer er `aria-hidden`, fokus-states er synlige, kontrasten er tjekket mod WCAG AA, og den diskrete cursor-ring på desktop erstatter aldrig systemets cursor.
