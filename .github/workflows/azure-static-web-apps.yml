@@ -1,0 +1,60 @@
+# Bygger og udgiver siden til Azure Static Web Apps.
+#  - Pull requests  → eget preview-miljø med egen URL (lukkes, når PR'en lukkes)
+#  - Push til main  → Static Web App'ens hoved-URL
+# Kræver repo-secret AZURE_STATIC_WEB_APPS_API_TOKEN (deployment token fra Azure-portalen).
+# Uden secret bygges siden stadig, men intet udgives.
+name: Azure Static Web Apps
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  build_and_deploy:
+    if: github.event_name == 'push' || github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    env:
+      HAS_TOKEN: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run check:assets
+      - name: Udgiv til Azure
+        if: env.HAS_TOKEN == 'true'
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: upload
+          app_location: out
+          skip_app_build: true
+          skip_api_build: true
+      - name: Ingen Azure-token endnu
+        if: env.HAS_TOKEN != 'true'
+        run: echo "::notice::Siden er bygget, men ikke udgivet. Tilføj secret AZURE_STATIC_WEB_APPS_API_TOKEN for at udgive."
+
+  close_preview:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    env:
+      HAS_TOKEN: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN != '' }}
+    steps:
+      - name: Luk preview-miljø
+        if: env.HAS_TOKEN == 'true'
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: close
+          app_location: out

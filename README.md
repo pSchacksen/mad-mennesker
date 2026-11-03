@@ -69,17 +69,14 @@ NEXT_PUBLIC_ALLOW_INDEXING=true
 
 Siden bygges som ren statisk HTML (`output: "export"`) uden server-funktioner, så den passer direkte til Azure Static Web Apps. `public/staticwebapp.config.json` følger med i build-outputtet og sætter 404-side, cache-headers og `noindex` på Design Lab.
 
-Når I er klar (intet er oprettet eller deployet endnu):
+Workflowen `.github/workflows/azure-static-web-apps.yml` bygger siden og udgiver `out/`. Pull requests får hvert deres preview-miljø med egen URL, og push til `main` udgiver til Static Web App'ens hoved-URL. Opsætning (én gang):
 
-1. Opret en **Static Web App** i Azure-portalen (Free-planen rækker), vælg *GitHub* som kilde, repo `pSchacksen/mad-mennesker` og branch `main`.
-2. Vælg build-preset **Custom** og angiv:
-   - App location: `/`
-   - Output location: `out`
-   - (API location: tom)
-3. Azure opretter selv en GitHub Actions-workflow og en deployment-token som repo-secret. Workflowen bygger med `npm run build` og udgiver `out/`.
-4. Sæt evt. `NEXT_PUBLIC_SITE_URL` og `NEXT_PUBLIC_ALLOW_INDEXING` som miljøvariabler i workflowen, når siden skal i luften på det rigtige domæne, og tilknyt domænet under *Custom domains*.
+1. I Azure-portalen: **Create a resource → Static Web App**. Plan: *Free*. Under *Deployment details* vælges **Other** (ikke GitHub, da workflowen allerede ligger i repoet).
+2. Når den er oprettet: **Overview → Manage deployment token** → kopiér tokenet.
+3. I GitHub: **Settings → Secrets and variables → Actions → New repository secret**, navn `AZURE_STATIC_WEB_APPS_API_TOKEN`, værdi = tokenet.
+4. Kør workflowen igen (eller push en ændring). Preview-URL'en vises i workflow-loggen og som kommentar på PR'en.
 
-Pull requests får automatisk deres egen preview-URL fra Azure, så nye ændringer kan ses, før de merges til `main`.
+Uden secret bygges og tjekkes siden stadig, men intet udgives. Når siden skal i luften på det rigtige domæne, tilknyttes domænet under *Custom domains*, og `NEXT_PUBLIC_SITE_URL` / `NEXT_PUBLIC_ALLOW_INDEXING` sættes som `env` på build-trinnet.
 
 ## Tilgængelighed og bevægelse
 
