@@ -12,25 +12,26 @@ Siden bruger udelukkende grafik, der er skarp på alle skærme:
 - **Fotos vises aldrig større end deres kildeopløsning.** Visualiseringerne fra PDF'erne er ca. 1.240–1.320 px
   brede, så de vises i buer, cirkler og kort på højst ca. 30 rem (480 px CSS = 960 px på retina) i stedet for fuld skærmbredde.
 - **Globelamperne** i sidetoppe og hero er tegnet i CSS (radiale gradienter), så de er knivskarpe i enhver opløsning.
+- **Intro-loaderne** (lampe, stearinlys, tallerken og bestik, dørene) er tegnet i CSS og SVG af samme grund.
 
 ## Synligt anvendt (35 filer + 4 fotos)
 
 | Asset | Hvor |
 |---|---|
 | `ornaments/crossed-cutlery.svg` | Hero A (emblem), "Find os"-kortet, sidetop på Menukort og Besøg os, 404 |
-| `ornaments/round-seal.svg` | Hero B og Story A (roterende segl med tekstbane), footer, sidetop på Om os og Reservation |
-| `ornaments/flourish.svg` | Hero B, menukort (begge varianter), sidetoppe, mobilmenu, Selskaber, Reservation |
+| `ornaments/round-seal.svg` | Velkomst (roterende segl med tekstbane), loaderen "Seglet", footer, sidetop på Om os og Reservation |
+| `ornaments/flourish.svg` | Menukortet, loaderen "Tre løfter", sidetoppe, mobilmenu, Selskaber, Reservation |
 | `ornaments/corner-botanical.svg` | Hjørner på menukortet, frokost/aften-sektionen, Selskaber |
-| `ornaments/four-point-star.svg` | Skilletegn i Klassikerne, aftenstjerne, Story B, menulinjer, footer |
+| `ornaments/four-point-star.svg` | Skilletegn i Klassikerne, aftenstjerne, menulinjer, footer |
 | `ornaments/arches.svg` | Om os |
-| `backgrounds/vector/botanical-corner.svg` | Story A |
+| `backgrounds/vector/botanical-corner.svg` | Velkomstsektionen |
 | `backgrounds/vector/globe-lights.svg` | Mobilmenuen |
 | `backgrounds/vector/arched-panels.svg` | "Find os"-kortet, Reservation |
 | `backgrounds/vector/ornamental-frame.svg` | Ramme om menukortet, selskabsformularen og reservationskortet |
 | `backgrounds/vector/leaf-scatter.svg` | Det stiliserede kort på Besøg os |
-| `backgrounds/vector/fine-grain.svg` | Diskret kornstruktur på mørke sektioner (`.grain`) |
+| `backgrounds/vector/fine-grain.svg` | Diskret kornstruktur på mørke sektioner og intro-loaderne |
 | 23 `icons/svg/*` | Menukort, Klassikerne, frokost/aften, selskaber, kontaktlinjer, knapper |
-| Fotos: facade, dining, bar, private-corner | Hero-varianterne, Story, frokost/aften, sidetoppe (beskåret og optimeret til AVIF/WebP/JPEG) |
+| Fotos: facade, dining, bar, private-corner | Hero, velkomst, frokost/aften, sidetoppe (beskåret og optimeret til AVIF/WebP/JPEG) |
 
 ## Bevidst fravalgt
 

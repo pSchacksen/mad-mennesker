@@ -1,9 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
-import { variantOptions, defaultVariants, type VariantKey } from "@/content/design";
-import { useVariants } from "@/lib/variants";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { defaultLoader, loaderOptions, type LoaderId } from "@/content/design";
 import {
   assetUsage,
   iconNames,
@@ -15,24 +13,15 @@ import {
   textureSrc,
   vectorSrc,
 } from "@/lib/brand-assets";
-import { HeroCinematic, HeroEditorial, HeroImmersive } from "@/components/sections/home/Heroes";
-import { StoryChapters, StoryEditorial } from "@/components/sections/home/Story";
-import { MenuBistrokort } from "@/components/sections/menu/MenuBistrokort";
-import { MenuTavle } from "@/components/sections/menu/MenuTavle";
+import { IntroOverlay } from "@/components/intro/IntroOverlay";
+import { INTRO_EXIT_MS } from "@/components/intro/IntroLoader";
 import { buttonStyles } from "@/components/booking/BookingButton";
 import { cn } from "@/lib/cn";
 
-const groups: { key: VariantKey; title: string }[] = [
-  { key: "hero", title: "Hero" },
-  { key: "story", title: "Storytelling" },
-  { key: "menu", title: "Menukort" },
-];
-
-type Tab = VariantKey | "assets";
+type Tab = "loadere" | "assets";
 
 export function DesignLab() {
-  const { variants, setVariant, reset, isCustom } = useVariants();
-  const [tab, setTab] = useState<Tab>("hero");
+  const [tab, setTab] = useState<Tab>("loadere");
 
   return (
     <div className="bg-ivory text-forest">
@@ -43,21 +32,15 @@ export function DesignLab() {
             Design <em className="display-italic text-brass-light">Lab</em>
           </h1>
           <p className="mt-4 max-w-2xl text-cream/80">
-            Afprøv de alternative løsninger direkte i browseren. Dit valg gemmes kun lokalt hos dig og slår igennem på forsiden og menukortet,
-            så I kan sammenligne i den rigtige sammenhæng. Den offentlige standard ændres i <code className="text-brass-light">src/content/design.ts</code>.
+            Seks bud på intro-loaderen, der møder gæsten ved første besøg. Klik på et billede for at afspille det i rammen, eller se det i fuld
+            skærm. Standarden vælges i <code className="text-brass-light">src/content/design.ts</code>.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link href="/" className={buttonStyles("brass")}>Se forsiden med mine valg</Link>
-            <button type="button" onClick={reset} disabled={!isCustom} className={cn(buttonStyles("ghost-light"), "disabled:opacity-40")}>
-              Nulstil til standard
-            </button>
-            <p className="text-sm text-sage">
-              Aktive valg: hero <b>{variants.hero}</b> · story <b>{variants.story}</b> · menu <b>{variants.menu}</b>
-            </p>
-          </div>
 
-          <div role="tablist" aria-label="Design Lab-sektioner" className="mt-12 flex flex-wrap gap-2">
-            {[...groups.map((g) => ({ id: g.key as Tab, label: g.title })), { id: "assets" as Tab, label: "Assets" }].map((t) => (
+          <div role="tablist" aria-label="Design Lab-sektioner" className="mt-10 flex flex-wrap gap-2">
+            {([
+              { id: "loadere", label: "Loadere" },
+              { id: "assets", label: "Assets" },
+            ] as const).map((t) => (
               <button
                 key={t.id}
                 role="tab"
@@ -75,49 +58,119 @@ export function DesignLab() {
         </div>
       </div>
 
-      {tab !== "assets" && (
-        <>
-          <div className="sticky top-0 z-30 border-b border-forest/10 bg-ivory/95 backdrop-blur">
-            <div className="mx-auto grid max-w-[76rem] gap-3 px-5 py-4 md:grid-cols-3 md:px-10" role="radiogroup" aria-label={`Varianter: ${tab}`}>
-              {variantOptions[tab].map((o) => {
-                const checked = variants[tab] === o.id;
-                return (
-                  <button
-                    key={o.id}
-                    role="radio"
-                    aria-checked={checked}
-                    onClick={() => setVariant(tab, o.id as never)}
-                    className={cn(
-                      "rounded-[2px] border p-4 text-left transition-colors",
-                      checked ? "border-forest bg-forest text-cream" : "border-forest/20 hover:border-forest",
-                    )}
-                  >
-                    <span className="flex items-center justify-between gap-2 font-display text-xl font-semibold">
-                      {o.label}
-                      {defaultVariants[tab] === o.id && <span className="font-sans text-[0.6rem] tracking-[0.18em] uppercase opacity-70">Standard</span>}
-                    </span>
-                    <span className="mt-1 block text-sm opacity-80">{o.description}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-          <div className="relative">
-            {tab === "hero" && (variants.hero === "editorial" ? <HeroEditorial /> : variants.hero === "immersive" ? <HeroImmersive /> : <HeroCinematic />)}
-            {tab === "story" && (variants.story === "chapters" ? <StoryChapters /> : <StoryEditorial />)}
-            {tab === "menu" && (
-              <div className="bg-ivory px-3 py-16 sm:px-5 md:px-10">
-                <div className="mx-auto max-w-[76rem]">{variants.menu === "tavle" ? <MenuTavle /> : <MenuBistrokort />}</div>
-              </div>
-            )}
-          </div>
-        </>
-      )}
-
-      {tab === "assets" && <AssetOverview />}
+      {tab === "loadere" ? <LoaderGallery /> : <AssetOverview />}
     </div>
   );
 }
+
+/* Loadere ─────────────────────────────────────────────────────── */
+
+function LoaderGallery() {
+  const [full, setFull] = useState<{ id: LoaderId; leaving: boolean; key: number } | null>(null);
+  const timers = useRef<number[]>([]);
+
+  const clear = () => {
+    timers.current.forEach((t) => window.clearTimeout(t));
+    timers.current = [];
+  };
+
+  const stop = useCallback(() => {
+    clear();
+    setFull((f) => (f ? { ...f, leaving: true } : f));
+    timers.current.push(
+      window.setTimeout(() => {
+        setFull(null);
+        document.documentElement.classList.remove("intro-active");
+      }, INTRO_EXIT_MS),
+    );
+  }, []);
+
+  const play = (id: LoaderId) => {
+    clear();
+    document.documentElement.classList.add("intro-active");
+    setFull({ id, leaving: false, key: Date.now() });
+    timers.current.push(window.setTimeout(stop, 3500));
+  };
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && stop();
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      clear();
+      document.documentElement.classList.remove("intro-active");
+    };
+  }, [stop]);
+
+  return (
+    <div className="mx-auto max-w-[76rem] px-5 py-14 md:px-10 md:py-20">
+      <ol className="grid gap-x-8 gap-y-14 md:grid-cols-2">
+        {loaderOptions.map((o, i) => (
+          <li key={o.id}>
+            <LoaderFrame id={o.id} label={o.label} />
+            <div className="mt-5 flex items-baseline justify-between gap-4">
+              <h2 className="text-3xl">
+                <span className="mr-3 font-sans text-sm font-semibold text-brass-ink">{String(i + 1).padStart(2, "0")}</span>
+                {o.label}
+              </h2>
+              {o.id === defaultLoader && (
+                <span className="shrink-0 rounded-full bg-forest px-3 py-1 text-[0.65rem] font-semibold tracking-[0.18em] text-cream uppercase">
+                  På siden nu
+                </span>
+              )}
+            </div>
+            <p className="mt-2 max-w-xl text-ink-muted">{o.description}</p>
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <button type="button" onClick={() => play(o.id)} className={buttonStyles("forest")}>
+                Afspil i fuld skærm
+              </button>
+              {/* Almindeligt link (fuld sideindlæsning), så introen starter forfra */}
+              <a href={`/?intro=${o.id}`} className={buttonStyles("ghost-dark")}>
+                Se på forsiden
+              </a>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      {full && <IntroOverlay key={full.key} variant={full.id} leaving={full.leaving} onSkip={stop} />}
+    </div>
+  );
+}
+
+/** Miniature: scenen tegnes i 1280×800 og skaleres ned. Klik afspiller den. */
+function LoaderFrame({ id, label }: { id: LoaderId; label: string }) {
+  const box = useRef<HTMLButtonElement>(null);
+  const [scale, setScale] = useState(0.4);
+  const [run, setRun] = useState(0);
+
+  useLayoutEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([e]) => setScale(e.contentRect.width / 1280));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  return (
+    <button
+      ref={box}
+      type="button"
+      onClick={() => setRun((r) => r + 1)}
+      aria-label={`Afspil ${label} i rammen`}
+      className="group relative block aspect-[16/10] w-full overflow-hidden rounded-[2px] bg-forest-night shadow-[0_24px_60px_-30px_rgba(10,31,25,0.6)] ring-1 ring-forest/10"
+    >
+      <div className="absolute top-0 left-0 h-[800px] w-[1280px] origin-top-left" style={{ transform: `scale(${scale})` }}>
+        <IntroOverlay key={run} variant={id} frame still={run === 0} />
+      </div>
+      <span className="absolute right-3 bottom-3 rounded-full bg-forest-night/70 px-3 py-1.5 text-[0.65rem] font-semibold tracking-[0.18em] text-cream uppercase opacity-0 backdrop-blur transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+        {run === 0 ? "Klik for at afspille" : "Klik for at afspille igen"}
+      </span>
+    </button>
+  );
+}
+
+/* Assets ─────────────────────────────────────────────────────── */
 
 function AssetOverview() {
   const sections = [

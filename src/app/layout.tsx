@@ -1,12 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import "./intro.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Providers } from "@/components/layout/Providers";
 import { Cursor } from "@/components/layout/Cursor";
-import { VariantNotice } from "@/components/layout/VariantNotice";
-import { IntroLoader } from "@/components/layout/IntroLoader";
-import { introBootScript } from "@/lib/intro";
+import { IntroLoader } from "@/components/intro/IntroLoader";
+import { defaultLoader } from "@/content/design";
+import { introBootScript } from "@/lib/intro-boot";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -31,14 +32,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="da" suppressHydrationWarning>
       <body>
-        <script dangerouslySetInnerHTML={{ __html: introBootScript }} />
+        <script dangerouslySetInnerHTML={{ __html: introBootScript(defaultLoader) }} />
         <IntroLoader />
         <Providers>
           <Header />
           <main id="indhold">{children}</main>
           <Footer />
           <Cursor />
-          <VariantNotice />
         </Providers>
       </body>
     </html>

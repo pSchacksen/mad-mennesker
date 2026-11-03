@@ -25,6 +25,3 @@ export function useIntroRuns() {
     () => 0,
   );
 }
-
-/** Kører før første paint: skjul loaderen, hvis den allerede er set i denne session. */
-export const introBootScript = `try{var q=/[?&]intro\\b/.test(location.search);if(!q&&(sessionStorage.getItem("mm-intro")||matchMedia("(prefers-reduced-motion: reduce)").matches))document.documentElement.classList.add("intro-skip");}catch(e){}`;

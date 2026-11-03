@@ -26,7 +26,7 @@ npm run images     # genskab optimerede fotos, teksturer og OG-billeder
 | `/selskaber/` | Selskaber og forespørgsel |
 | `/besoeg/` | Adresse, åbningstider, kontakt, kort og "godt at vide" |
 | `/reservation/` | Bordreservation (preview-tilstand indtil et bookingsystem er valgt) |
-| `/design-lab/` | **Internt.** Ikke linket, `noindex`. Skift mellem designvarianter og se asset-oversigten |
+| `/design-lab/` | **Internt.** Ikke linket, `noindex`. Seks bud på intro-loaderen og asset-oversigten |
 
 ## Opdatér indhold
 
@@ -35,7 +35,7 @@ Alt indhold, der skal kunne ændres, ligger samlet i `src/content/`. Strukturen 
 - **`site.ts`** – adresse, telefon, e-mail, åbningstider, sociale medier, åbningsdato. Felter står som `null`, indtil de er bekræftet; siden viser så "følger snart" i stedet for at opfinde noget. Når adresse, telefon og åbningstider er udfyldt, udsendes strukturerede Schema.org-restaurantdata automatisk.
 - **`menu.ts`** – kategorier, retter, beskrivelser og vejledende priser (fra forretningsplanen), dagens ret og retterne på forsiden. Sæt `menuStatus.isPreliminary = false`, når kortet er endeligt. Når der kommer madfotos, lægges de i `assets-src/photos/`, `npm run images` køres, og billednavnet sættes i rettens `image`-felt.
 - **`booking.ts`** – se nedenfor.
-- **`design.ts`** – hvilke designvarianter den offentlige side bruger.
+- **`design.ts`** – de seks intro-loadere og hvilken af dem siden bruger.
 
 ## Bordreservation
 
@@ -48,7 +48,7 @@ export const booking = { provider: "embed", embedUrl: "https://…" };    // /re
 
 ## Design Lab
 
-Åbn `/design-lab/` for at sammenligne 3 hero-varianter, 2 storytelling-varianter og 2 menukort-varianter. Valget gemmes i din egen browser og slår igennem på forsiden og menukortet, så de kan ses i sammenhæng (en lille terrakotta-label viser, at du ser en ikke-standard variant). Man kan også dele et link som `/?hero=editorial&menu=tavle`. Når der er truffet en beslutning, ændres `defaultVariants` i `src/content/design.ts`.
+`/design-lab/` er internt (ikke linket, `noindex`). Her ligger de seks bud på intro-loaderen, som kan afspilles i en ramme eller i fuld skærm, samt en oversigt over designpakkens assets. Hver loader kan også ses på forsiden med fx `/?intro=segl`. Den loader, siden bruger, vælges med `defaultLoader` i `src/content/design.ts`.
 
 ## Billeder og brand-assets
 
@@ -80,7 +80,7 @@ Uden secret bygges og tjekkes siden stadig, men intet udgives. Når siden skal i
 
 ## Intro-loader
 
-Ved første besøg i en session tænder en globelampe, og navnet træder frem, før mørket løfter sig fra siden (`src/components/layout/IntroLoader.tsx`, styling nederst i `globals.css`). Den vises højst ca. 3,5 sekunder, kan springes over med Escape eller "Spring over", og vises ikke ved reduceret bevægelse. Tilføj `?intro` til adressen for at se den igen.
+Ved første besøg i en session vises en kort intro, før siden kommer til syne (`src/components/intro/`, styling i `src/app/intro.css`). Der er seks varianter: Globelampen, Levende lys, Bordet dækkes, Seglet, Facadeskiltet og Tre løfter. Introen varer cirka 3,5 sekunder, kan springes over med Escape eller "Spring over", og vises ikke ved reduceret bevægelse. Tilføj `?intro` (eller `?intro=<variant>`) til adressen for at se den igen.
 
 ## Tilgængelighed og bevægelse
 
