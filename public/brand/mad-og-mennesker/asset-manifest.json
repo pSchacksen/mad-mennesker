@@ -1,0 +1,71 @@
+{
+  "brand": "Mad & Mennesker",
+  "icons": [
+    "fork-knife",
+    "cloche",
+    "wine-glass",
+    "beer-glass",
+    "coffee-cup",
+    "calendar",
+    "people",
+    "location",
+    "phone",
+    "envelope",
+    "heart",
+    "plate",
+    "leaf",
+    "candle",
+    "chef-hat",
+    "clock",
+    "arrow-up-right",
+    "arrow-right",
+    "instagram",
+    "glass-toast",
+    "branch",
+    "private-dining",
+    "smorrebrod"
+  ],
+  "ornaments": [
+    "flourish",
+    "crossed-cutlery",
+    "round-seal",
+    "corner-botanical",
+    "four-point-star",
+    "arches"
+  ],
+  "textures": [
+    "forest-leaf-shadow",
+    "ivory-plaster",
+    "green-brushstroke",
+    "terracotta-brushstroke",
+    "olive-botanical",
+    "aged-brass",
+    "walnut-wood",
+    "forest-tile",
+    "linen-cloth",
+    "golden-bokeh",
+    "olive-branches"
+  ],
+  "vector_backgrounds": [
+    "botanical-corner",
+    "globe-lights",
+    "editorial-circles",
+    "arched-panels",
+    "linen-stripes",
+    "ornamental-frame",
+    "leaf-scatter",
+    "fine-grain",
+    "deep-forest",
+    "warm-cream",
+    "dark-olive",
+    "terracotta-wash"
+  ],
+  "colors": {
+    "forest": "#173B30",
+    "brass": "#C3A46B",
+    "cream": "#F4EDE0",
+    "walnut": "#654632",
+    "terracotta": "#B66F51"
+  },
+  "note": "Concept assets, not factual restaurant photographs or finalized logo."
+}

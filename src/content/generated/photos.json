@@ -1,0 +1,42 @@
+{
+  "bar": {
+    "width": 1320,
+    "height": 850,
+    "widths": [
+      480,
+      828,
+      1320
+    ],
+    "blur": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAAAQBACdASoYAA8APu1iqk4ppaQiMAgBMB2JQBOmUI4ABS6sYyAXrwNsAAD9dUdMP9Rc8ek7t7ptB9zzdUwjlHMDbNXMsYsrKD9tyd/umjqQPD2/sapqgAAA"
+  },
+  "dining": {
+    "width": 1245,
+    "height": 1030,
+    "widths": [
+      480,
+      828,
+      1245
+    ],
+    "blur": "data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAADQBACdASoYABQAPu1sqlEppaOiqAqpMB2JQBYdgXYmHq98/dfD5o+m3TjO4BBQMAD6lBH9/Xtl4su7w4jSf1m/44WHjQXaL1RtLN2vDHc2omkpC3dIyyW0+bpivReHPWKzpXAfXEjlajk6RxuWo0AAAAA="
+  },
+  "facade": {
+    "width": 1236,
+    "height": 1060,
+    "widths": [
+      480,
+      828,
+      1236
+    ],
+    "blur": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAQBACdASoYABUAPu1qqlEppaOiqAqpMB2JYwC06AWtpLOfV+gto/LoAAD+hPMe3VvuUPbWJ/jQVVVbk4NDCZpu1TrvqydyuhtYrsAKdTFGbYR0fbloitpHqGUPJIvcSQklrZE4IAAAAA=="
+  },
+  "private-corner": {
+    "width": 1289,
+    "height": 847,
+    "widths": [
+      480,
+      828,
+      1289
+    ],
+    "blur": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAwBACdASoYABAAPu1kqU2ppaQiMAgBMB2JQBOmUABpuxFWJrCRGoCIGDwA/p1yqz+211Wqvm4VdaL09dgb/T2VJqXpcSMoSX8nSNQnA0Vg6tEhZmV918mqIaCAAA=="
+  }
+}

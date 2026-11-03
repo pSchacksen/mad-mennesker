@@ -1,0 +1,161 @@
+@import "tailwindcss";
+@import "@fontsource-variable/cormorant/wght.css";
+@import "@fontsource-variable/cormorant/wght-italic.css";
+@import "@fontsource-variable/dm-sans/wght.css";
+
+/* ─────────────────────────────────────────────────────────────
+   MAD & MENNESKER — design tokens
+   Farverne tager udgangspunkt i designpakkens asset-manifest og
+   de fire PDF-visualiseringer (skovgrønne vægge, messing, globelamper,
+   valnøddetræ, cremefarvede paneler og levende lys).
+   ───────────────────────────────────────────────────────────── */
+@theme {
+  /* Kernepalet */
+  --color-forest: #173b30;
+  --color-forest-deep: #0f2a22;
+  --color-forest-night: #0a1f19;
+  --color-olive: #303d2d;
+  --color-cream: #f4ede0;
+  --color-ivory: #faf7f0;
+  --color-linen: #ebe2d1;
+  --color-brass: #c3a46b;
+  --color-brass-light: #dcc495;
+  --color-walnut: #654632;
+  --color-terracotta: #b66f51;
+
+  /* Tilgængelige tekstvarianter (WCAG AA på creme) */
+  --color-brass-ink: #7a5e2c; /* 5.2:1 på creme */
+  --color-terracotta-ink: #9a5539; /* 4.8:1 på creme */
+  --color-ink-muted: #4a564d; /* 6.6:1 på creme */
+  --color-sage: #b6bda8; /* 6.4:1 på skovgrøn */
+  --color-glow: #ffd99a;
+
+  /* Typografi */
+  --font-display: "Cormorant Variable", "Cormorant", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "DM Sans Variable", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Bevægelse */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Breakpoints (mobile-first) */
+  --breakpoint-xs: 26rem;
+  --breakpoint-3xl: 112rem;
+
+  --animate-drift: drift 14s ease-in-out infinite alternate;
+  --animate-sway: sway 9s ease-in-out infinite alternate;
+  --animate-glow: glow 6s ease-in-out infinite alternate;
+  --animate-spin-slow: spin 60s linear infinite;
+}
+
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, -14px, 0); }
+}
+@keyframes sway {
+  from { transform: rotate(-2.5deg); }
+  to { transform: rotate(2.5deg); }
+}
+@keyframes glow {
+  from { opacity: 0.55; }
+  to { opacity: 1; }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    background: var(--color-ivory);
+    color: var(--color-forest);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--color-brass);
+    color: var(--color-forest-night);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .on-light :focus-visible {
+    outline-color: var(--color-forest);
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 0.95;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  img { user-select: none; }
+}
+
+@layer components {
+  /* Lille typografisk label med messingstreg — gennemgående "stempel" */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 2rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.6;
+  }
+  .display-italic {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  /* Messinglinje med prik — bruges i menukort og labels */
+  .rule-dotted {
+    flex: 1;
+    min-width: 1.5rem;
+    border-bottom: 1px dotted currentColor;
+    opacity: 0.45;
+    transform: translateY(-0.3em);
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("/brand/mad-og-mennesker/backgrounds/vector/fine-grain.svg");
+    background-size: 800px auto;
+    opacity: 0.35;
+    mix-blend-mode: soft-light;
+  }
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
