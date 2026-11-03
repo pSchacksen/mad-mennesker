@@ -1,11 +1,8 @@
 "use client";
 
 import { useVariants } from "@/lib/variants";
-import { HeroCinematic } from "./HeroCinematic";
-import { HeroEditorial } from "./HeroEditorial";
-import { HeroImmersive } from "./HeroImmersive";
-import { StoryEditorial } from "./StoryEditorial";
-import { StoryChapters } from "./StoryChapters";
+import { HeroCinematic, HeroEditorial, HeroImmersive } from "./Heroes";
+import { StoryChapters, StoryEditorial } from "./Story";
 
 export function Hero() {
   const { variants } = useVariants();

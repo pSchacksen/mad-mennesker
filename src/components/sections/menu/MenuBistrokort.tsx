@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useRef, useState, type KeyboardEvent } from "react";
 import { menu } from "@/content/menu";
 import { BrandIcon, Ornament } from "@/components/brand/BrandIcon";
-import { Texture, VectorLayer } from "@/components/brand/Layers";
+import { VectorLayer } from "@/components/brand/Layers";
 import { cn } from "@/lib/cn";
 import { DailySpecial, MenuLine, MenuNote } from "./MenuParts";
 
@@ -26,7 +26,6 @@ export function MenuBistrokort({ showDaily = true }: { showDaily?: boolean }) {
 
   return (
     <div className="on-light relative isolate mx-auto max-w-5xl bg-cream text-forest shadow-[0_50px_100px_-40px_rgba(23,59,48,0.55)]">
-      <Texture name="linen-cloth" opacity={0.75} />
       <FrameBorder />
       <Ornament name="corner-botanical" className="absolute top-8 left-8 size-14 text-brass-ink md:size-20" />
       <Ornament name="corner-botanical" className="absolute top-8 right-8 size-14 -scale-x-100 text-brass-ink md:size-20" />

@@ -1,9 +1,9 @@
 import { FrameBorder } from "@/components/brand/FrameBorder";
 import { PageHero } from "@/components/sections/PageHero";
-import { occasions } from "@/components/sections/home/Parties";
+import { occasions } from "@/components/sections/home/Visit";
 import { InquiryForm } from "@/components/sections/InquiryForm";
 import { BrandIcon, Ornament } from "@/components/brand/BrandIcon";
-import { Texture, VectorLayer } from "@/components/brand/Layers";
+import { VectorLayer } from "@/components/brand/Layers";
 import { Reveal, RevealLines, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ContactLines } from "@/components/ui/Practical";
@@ -33,12 +33,10 @@ export default function SelskaberPage() {
         intro="Fødselsdag, jubilæum, firmafrokost eller bare en god grund til at samles. Vi tager gerne imod mindre selskaber og private sammenkomster."
         photo="private-corner"
         ornament="corner-botanical"
-        overlay="arched-panels"
       />
 
-      <section className="on-light relative isolate overflow-hidden bg-cream py-28 text-forest md:py-36">
-        <Texture name="linen-cloth" opacity={0.55} />
-        <div className="relative mx-auto max-w-[92rem] px-5 md:px-10">
+      <section className="on-light relative isolate overflow-hidden bg-cream py-20 text-forest md:py-28">
+        <div className="relative mx-auto max-w-[76rem] px-5 md:px-10">
           <SectionLabel index="01" className="text-brass-ink">Anledninger</SectionLabel>
           <Stagger className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {occasions.map((o) => (
@@ -50,7 +48,7 @@ export default function SelskaberPage() {
             ))}
           </Stagger>
 
-          <div className="mt-28 grid gap-16 lg:grid-cols-12">
+          <div className="mt-20 grid gap-16 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <SectionLabel index="02" className="text-brass-ink">Sådan gør vi</SectionLabel>
               <RevealLines className="mt-8 text-[clamp(2.4rem,4.4vw,4rem)]" lines={["Enkelt og", <em key="i" className="display-italic text-terracotta-ink">uden besvær.</em>]} />

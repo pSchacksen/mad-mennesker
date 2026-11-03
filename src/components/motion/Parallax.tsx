@@ -52,7 +52,8 @@ export function ImageReveal({
   const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.15 });
-  const show = immediate || inView;
+  // Ved reduceret bevægelse vises billedet straks (SSR-markup starter maskeret).
+  const show = immediate || inView || reduce;
   const hidden = {
     bottom: "inset(100% 0% 0% 0%)",
     left: "inset(0% 100% 0% 0%)",
@@ -65,15 +66,15 @@ export function ImageReveal({
     <div ref={ref} className={className}>
       <motion.div
         className="h-full w-full overflow-hidden"
-        initial={reduce ? false : { clipPath: hidden }}
+        initial={{ clipPath: hidden }}
         animate={show ? { clipPath: "inset(0% 0% 0% 0%)" } : undefined}
-        transition={{ duration: 1.4, delay, ease: [0.76, 0, 0.24, 1] }}
+        transition={reduce ? { duration: 0 } : { duration: 1.4, delay, ease: [0.76, 0, 0.24, 1] }}
       >
         <motion.div
           className="h-full w-full"
-          initial={reduce ? false : { scale: 1.18 }}
+          initial={{ scale: 1.18 }}
           animate={show ? { scale: 1 } : undefined}
-          transition={{ duration: 1.8, delay, ease: [0.22, 1, 0.36, 1] }}
+          transition={reduce ? { duration: 0 } : { duration: 1.8, delay, ease: [0.22, 1, 0.36, 1] }}
         >
           {children}
         </motion.div>

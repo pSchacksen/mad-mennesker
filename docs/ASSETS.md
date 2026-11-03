@@ -3,39 +3,40 @@
 Filerne ligger i `public/brand/mad-og-mennesker/` (uændret struktur fra ZIP'en). Al adgang går gennem
 `src/lib/brand-assets.ts`, og den levende oversigt med forhåndsvisning findes i **Design Lab → Assets** (`/design-lab/`).
 
-SVG-ikoner og -ornamenter gengives som CSS-masker (`BrandIcon`, `Ornament`), så de messingtegnede filer kan
-farves med `currentColor` og holde kontrast på både mørke og lyse flader. Teksturerne serveres i en 1280 px
-web-version (`*-1280.webp`, genereret af `npm run images`) med lav opacity.
+## Princip: kun skarpe assets
 
-## Synligt anvendt i første preview (40 af 52 filer)
+Siden bruger udelukkende grafik, der er skarp på alle skærme:
+
+- **Vektor (SVG)** til ornamenter, ikoner og baggrundsmotiver. Ikoner og ornamenter gengives som CSS-masker
+  (`BrandIcon`, `Ornament`), så de kan farves med `currentColor` og holde kontrast på mørke og lyse flader.
+- **Fotos vises aldrig større end deres kildeopløsning.** Visualiseringerne fra PDF'erne er ca. 1.240–1.320 px
+  brede, så de vises i buer, cirkler og kort på højst ca. 30 rem (480 px CSS = 960 px på retina) i stedet for fuld skærmbredde.
+- **Globelamperne** i sidetoppe og hero er tegnet i CSS (radiale gradienter), så de er knivskarpe i enhver opløsning.
+
+## Synligt anvendt (35 filer + 4 fotos)
 
 | Asset | Hvor |
 |---|---|
-| `ornaments/crossed-cutlery.svg` | Hero A (emblem der drejer ind), køkken-sektionens afslutning, sidetop på Menukort og Besøg os, 404 |
-| `ornaments/round-seal.svg` | Velkomst (roterende stempel med tekstbane), Hero B, footer, sidetop på Om os og Reservation |
-| `ornaments/flourish.svg` | Separator i velkomst, menukort, Hero B, mobilmenu, Selskaber, Reservation, Tavlen |
-| `ornaments/corner-botanical.svg` | Hjørner på menukortet, selskabssektionen, sidetop på Selskaber |
-| `ornaments/four-point-star.svg` | Aktiv ret i køkken-sektionen, aftenstjerne i dag/aften, menulinjer, footer, Story B |
-| `ornaments/arches.svg` | Hero C, Om os |
-| `backgrounds/vector/globe-lights.svg` | Hero A + C (glød-animation), dag/aften om aftenen, footer, alle sidetoppe, mobilmenu |
-| `backgrounds/vector/botanical-corner.svg` | Velkomst (parallax), Story B |
-| `backgrounds/vector/editorial-circles.svg` | "Mere end et måltid" (parallax), Hero B |
-| `backgrounds/vector/arched-panels.svg` | Selskaber, Reservation |
+| `ornaments/crossed-cutlery.svg` | Hero A (emblem), "Find os"-kortet, sidetop på Menukort og Besøg os, 404 |
+| `ornaments/round-seal.svg` | Hero B og Story A (roterende segl med tekstbane), footer, sidetop på Om os og Reservation |
+| `ornaments/flourish.svg` | Hero B, menukort (begge varianter), sidetoppe, mobilmenu, Selskaber, Reservation |
+| `ornaments/corner-botanical.svg` | Hjørner på menukortet, frokost/aften-sektionen, Selskaber |
+| `ornaments/four-point-star.svg` | Skilletegn i Klassikerne, aftenstjerne, Story B, menulinjer, footer |
+| `ornaments/arches.svg` | Om os |
+| `backgrounds/vector/botanical-corner.svg` | Story A |
+| `backgrounds/vector/globe-lights.svg` | Mobilmenuen |
+| `backgrounds/vector/arched-panels.svg` | "Find os"-kortet, Reservation |
 | `backgrounds/vector/ornamental-frame.svg` | Ramme om menukortet, selskabsformularen og reservationskortet |
-| `backgrounds/vector/leaf-scatter.svg` | Det stiliserede kort |
-| `backgrounds/vector/fine-grain.svg` | Kornstruktur på mørke sektioner (`.grain`) |
-| `backgrounds/textures/ivory-plaster.webp` | Lyse editorial sektioner |
-| `backgrounds/textures/forest-leaf-shadow.webp` | "Mere end et måltid", Hero C, Tavlen, sidetoppe |
-| `backgrounds/textures/golden-bokeh.webp` | Aftenstemning i dag/aften, footer |
-| `backgrounds/textures/linen-cloth.webp` | Madpladsholdere, menukort, Selskaber, Reservation |
-| `backgrounds/textures/walnut-wood.webp` | Træramme om Tavlen (menuvariant B) |
-| `backgrounds/textures/olive-branches.webp` | Det stiliserede kort |
-| `backgrounds/textures/forest-tile.webp` | Køkken-sektionen, Om os |
-| Alle 23 `icons/svg/*` | Menukort, køkken, dag/aften, selskaber, kontaktlinjer, knapper (se Design Lab for detaljer) |
+| `backgrounds/vector/leaf-scatter.svg` | Det stiliserede kort på Besøg os |
+| `backgrounds/vector/fine-grain.svg` | Diskret kornstruktur på mørke sektioner (`.grain`) |
+| 23 `icons/svg/*` | Menukort, Klassikerne, frokost/aften, selskaber, kontaktlinjer, knapper |
+| Fotos: facade, dining, bar, private-corner | Hero-varianterne, Story, frokost/aften, sidetoppe (beskåret og optimeret til AVIF/WebP/JPEG) |
 
-## Bevidst fravalgt (for nu)
+## Bevidst fravalgt
 
-- `textures/green-brushstroke`, `textures/terracotta-brushstroke`, `textures/aged-brass`: for dominerende bag tekst; kan bruges til kampagner/sociale medier.
-- `vector/deep-forest`, `vector/warm-cream`, `vector/dark-olive`, `vector/terracotta-wash`: fladefarverne er i stedet design tokens i CSS (lettere og skarpere).
-- `vector/linen-stripes`: konkurrerede med linned-teksturen.
+- **Alle 11 rasterteksturer** (`backgrounds/textures/*`): de er leveret i for lav opløsning til at blive strakt over
+  hele skærmbredder og så slørede ud på store skærme. Fladerne er i stedet rene farver fra paletten plus vektorgrafik.
+  Teksturerne kan fint bruges på sociale medier eller i tryk i små formater.
+- `vector/editorial-circles`, `vector/linen-stripes`: fyldte uden at tilføre noget i det strammere layout.
+- `vector/deep-forest`, `vector/warm-cream`, `vector/dark-olive`, `vector/terracotta-wash`: fladefarverne er design tokens i CSS.
 - PNG-versionerne ligger klar som fallback, men SVG bruges overalt.

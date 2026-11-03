@@ -2,17 +2,14 @@
 
 import { menu } from "@/content/menu";
 import { BrandIcon, Ornament } from "@/components/brand/BrandIcon";
-import { Texture } from "@/components/brand/Layers";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { DailySpecial, MenuLine, MenuNote } from "./MenuParts";
 
 /** Menukort variant B — mørk tavle med træramme, sticky indeks og hele kortet synligt */
 export function MenuTavle() {
   return (
-    <div className="relative isolate overflow-hidden rounded-[3px] p-3 shadow-[0_50px_100px_-40px_rgba(0,0,0,0.7)] md:p-5">
-      <Texture name="walnut-wood" opacity={1} blend="normal" className="-z-10" />
+    <div className="relative isolate overflow-hidden rounded-[3px] bg-walnut p-3 shadow-[0_50px_100px_-40px_rgba(0,0,0,0.7)] md:p-5">
       <div className="grain relative isolate bg-forest-night text-cream">
-        <Texture name="forest-leaf-shadow" opacity={0.6} blend="normal" className="-z-10" />
         <div className="grid lg:grid-cols-[17rem_1fr]">
           <nav aria-label="Spring til kategori" className="border-b border-cream/10 p-6 lg:border-r lg:border-b-0 lg:p-10">
             <div className="lg:sticky lg:top-28">

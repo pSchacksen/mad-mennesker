@@ -2,7 +2,6 @@ import { PageHero } from "@/components/sections/PageHero";
 import { StylizedMap } from "@/components/media/StylizedMap";
 import { Photo } from "@/components/media/Photo";
 import { BrandIcon } from "@/components/brand/BrandIcon";
-import { Texture } from "@/components/brand/Layers";
 import { ImageReveal } from "@/components/motion/Parallax";
 import { Reveal } from "@/components/motion/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -43,9 +42,8 @@ export default function BesoegPage() {
         </div>
       </PageHero>
 
-      <section className="on-light relative isolate bg-ivory py-24 text-forest md:py-36">
-        <Texture name="ivory-plaster" opacity={0.6} />
-        <div className="relative mx-auto grid max-w-[92rem] gap-16 px-5 md:px-10 lg:grid-cols-12">
+      <section className="on-light relative isolate bg-ivory py-20 text-forest md:py-28">
+        <div className="relative mx-auto grid max-w-[76rem] gap-16 px-5 md:px-10 lg:grid-cols-12">
           <div className="space-y-14 lg:col-span-5">
             <Reveal>
               <SectionLabel className="text-brass-ink">Adresse</SectionLabel>
@@ -81,9 +79,8 @@ export default function BesoegPage() {
         </div>
       </section>
 
-      <section className="grain relative isolate overflow-hidden bg-forest py-24 text-cream md:py-36">
-        <Texture name="forest-leaf-shadow" opacity={0.6} blend="normal" />
-        <div className="relative mx-auto grid max-w-[92rem] gap-16 px-5 md:px-10 lg:grid-cols-12">
+      <section className="grain relative isolate overflow-hidden bg-forest py-20 text-cream md:py-28">
+        <div className="relative mx-auto grid max-w-[76rem] gap-16 px-5 md:px-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <SectionLabel className="text-brass">Godt at vide</SectionLabel>
             <ImageReveal className="mt-10 aspect-[4/3] overflow-hidden" from="left">

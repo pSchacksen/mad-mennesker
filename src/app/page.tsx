@@ -1,10 +1,7 @@
 import { Hero, Story } from "@/components/sections/home/Switchers";
-import { Kitchen } from "@/components/sections/home/Kitchen";
-import { MoreThanMeal } from "@/components/sections/home/MoreThanMeal";
-import { DayNight } from "@/components/sections/home/DayNight";
-import { MenuSection } from "@/components/sections/home/MenuSection";
-import { Parties } from "@/components/sections/home/Parties";
-import { FindUs } from "@/components/sections/home/FindUs";
+import { Classics } from "@/components/sections/home/Classics";
+import { Mood } from "@/components/sections/home/Mood";
+import { Visit } from "@/components/sections/home/Visit";
 import { StructuredData } from "@/components/layout/StructuredData";
 
 export default function HomePage() {
@@ -12,12 +9,9 @@ export default function HomePage() {
     <>
       <Hero />
       <Story />
-      <Kitchen />
-      <MoreThanMeal />
-      <DayNight />
-      <MenuSection />
-      <Parties />
-      <FindUs />
+      <Classics />
+      <Mood />
+      <Visit />
       <StructuredData />
     </>
   );

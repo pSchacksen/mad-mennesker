@@ -1,5 +1,5 @@
 import { BrandIcon } from "@/components/brand/BrandIcon";
-import { Texture, VectorLayer } from "@/components/brand/Layers";
+import { VectorLayer } from "@/components/brand/Layers";
 import { cn } from "@/lib/cn";
 
 /**
@@ -10,7 +10,6 @@ import { cn } from "@/lib/cn";
 export function StylizedMap({ className }: { className?: string }) {
   return (
     <figure className={cn("relative isolate overflow-hidden bg-linen text-forest", className)}>
-      <Texture name="olive-branches" opacity={0.55} />
       <svg viewBox="0 0 600 600" className="absolute inset-0 h-full w-full" aria-hidden preserveAspectRatio="xMidYMid slice">
         <g fill="none" stroke="#173B30" strokeLinecap="round">
           <path d="M-20 140 C 120 160, 220 90, 330 120 S 520 200, 640 170" strokeWidth="26" opacity=".07" />

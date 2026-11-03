@@ -1,7 +1,7 @@
 import { FrameBorder } from "@/components/brand/FrameBorder";
 import { PageHero } from "@/components/sections/PageHero";
 import { BrandIcon, Ornament } from "@/components/brand/BrandIcon";
-import { Texture, VectorLayer } from "@/components/brand/Layers";
+import { VectorLayer } from "@/components/brand/Layers";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { ContactLines } from "@/components/ui/Practical";
@@ -32,8 +32,7 @@ export default function ReservationPage() {
         ornament="round-seal"
       />
 
-      <section className="on-light relative isolate overflow-hidden bg-cream py-24 text-forest md:py-36">
-        <Texture name="linen-cloth" opacity={0.55} />
+      <section className="on-light relative isolate overflow-hidden bg-cream py-20 text-forest md:py-28">
         <VectorLayer name="arched-panels" className="inset-0 h-full w-full" />
         <div className="relative mx-auto max-w-4xl px-5 md:px-10">
           {booking.provider === "embed" && (

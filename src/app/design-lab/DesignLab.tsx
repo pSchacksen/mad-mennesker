@@ -15,12 +15,10 @@ import {
   textureSrc,
   vectorSrc,
 } from "@/lib/brand-assets";
-import { HeroCinematic } from "@/components/sections/home/HeroCinematic";
-import { HeroEditorial } from "@/components/sections/home/HeroEditorial";
-import { HeroImmersive } from "@/components/sections/home/HeroImmersive";
-import { StoryEditorial } from "@/components/sections/home/StoryEditorial";
-import { StoryChapters } from "@/components/sections/home/StoryChapters";
-import { MenuSection } from "@/components/sections/home/MenuSection";
+import { HeroCinematic, HeroEditorial, HeroImmersive } from "@/components/sections/home/Heroes";
+import { StoryChapters, StoryEditorial } from "@/components/sections/home/Story";
+import { MenuBistrokort } from "@/components/sections/menu/MenuBistrokort";
+import { MenuTavle } from "@/components/sections/menu/MenuTavle";
 import { buttonStyles } from "@/components/booking/BookingButton";
 import { cn } from "@/lib/cn";
 
@@ -39,7 +37,7 @@ export function DesignLab() {
   return (
     <div className="bg-ivory text-forest">
       <div className="bg-forest-night pt-32 pb-10 text-cream">
-        <div className="mx-auto max-w-[92rem] px-5 md:px-10">
+        <div className="mx-auto max-w-[76rem] px-5 md:px-10">
           <p className="eyebrow text-terracotta">Internt · ikke en del af den offentlige navigation</p>
           <h1 className="mt-6 text-[clamp(3rem,7vw,6rem)]">
             Design <em className="display-italic text-brass-light">Lab</em>
@@ -80,7 +78,7 @@ export function DesignLab() {
       {tab !== "assets" && (
         <>
           <div className="sticky top-0 z-30 border-b border-forest/10 bg-ivory/95 backdrop-blur">
-            <div className="mx-auto grid max-w-[92rem] gap-3 px-5 py-4 md:grid-cols-3 md:px-10" role="radiogroup" aria-label={`Varianter: ${tab}`}>
+            <div className="mx-auto grid max-w-[76rem] gap-3 px-5 py-4 md:grid-cols-3 md:px-10" role="radiogroup" aria-label={`Varianter: ${tab}`}>
               {variantOptions[tab].map((o) => {
                 const checked = variants[tab] === o.id;
                 return (
@@ -107,7 +105,11 @@ export function DesignLab() {
           <div className="relative">
             {tab === "hero" && (variants.hero === "editorial" ? <HeroEditorial /> : variants.hero === "immersive" ? <HeroImmersive /> : <HeroCinematic />)}
             {tab === "story" && (variants.story === "chapters" ? <StoryChapters /> : <StoryEditorial />)}
-            {tab === "menu" && <MenuSection variant={variants.menu} />}
+            {tab === "menu" && (
+              <div className="bg-ivory px-3 py-16 sm:px-5 md:px-10">
+                <div className="mx-auto max-w-[76rem]">{variants.menu === "tavle" ? <MenuTavle /> : <MenuBistrokort />}</div>
+              </div>
+            )}
           </div>
         </>
       )}
@@ -125,7 +127,7 @@ function AssetOverview() {
     { title: "Teksturer", dir: "textures", names: textureNames, src: (n: string) => textureSrc(n as never), dark: false },
   ];
   return (
-    <div className="mx-auto max-w-[92rem] px-5 py-16 md:px-10">
+    <div className="mx-auto max-w-[76rem] px-5 py-16 md:px-10">
       <p className="max-w-2xl text-ink-muted">
         Central oversigt over Designpakke V1 (<code>public/brand/mad-og-mennesker/</code>) og hvor hvert asset bruges. Kilden er{" "}
         <code>src/lib/brand-assets.ts</code>.

@@ -20,7 +20,7 @@ npm run images     # genskab optimerede fotos, teksturer og OG-billeder
 
 | Sti | Indhold |
 |---|---|
-| `/` | Forsiden: hero, velkomst, køkkenet (horisontal fortælling), mere end et måltid, frokost/aften-switch, menukort, selskaber, find os |
+| `/` | Forsiden i fem korte sektioner: hero, historien, klassikerne, frokost/aften, selskaber + find os |
 | `/menukort/` | Det fulde menukort |
 | `/om-os/` | Koncept og værdier |
 | `/selskaber/` | Selskaber og forespørgsel |

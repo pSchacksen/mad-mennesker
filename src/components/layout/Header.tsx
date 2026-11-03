@@ -53,7 +53,7 @@ export function Header() {
           hidden && "-translate-y-full",
         )}
       >
-        <div className="mx-auto flex max-w-[92rem] items-center justify-between gap-6 px-5 md:px-10">
+        <div className="mx-auto flex max-w-[84rem] items-center justify-between gap-6 px-5 md:px-10">
           <Link href="/" aria-label="Mad & Mennesker — til forsiden" className="relative z-10 rounded-sm">
             <Wordmark compact />
           </Link>

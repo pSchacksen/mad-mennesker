@@ -1,8 +1,7 @@
 import { PageHero } from "@/components/sections/PageHero";
 import { Photo } from "@/components/media/Photo";
 import { BrandIcon, Ornament } from "@/components/brand/BrandIcon";
-import { Texture } from "@/components/brand/Layers";
-import { ImageReveal, Parallax } from "@/components/motion/Parallax";
+import { ImageReveal } from "@/components/motion/Parallax";
 import { Reveal, RevealLines, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ArrowLink } from "@/components/ui/ArrowLink";
@@ -38,48 +37,29 @@ export default function OmOsPage() {
         ornament="round-seal"
       />
 
-      <section className="on-light relative isolate overflow-hidden bg-ivory py-28 text-forest md:py-40">
-        <Texture name="ivory-plaster" opacity={0.6} />
-        <Ornament name="arches" className="absolute top-20 right-[-6rem] size-[28rem] text-brass/25 md:right-10" />
-        <div className="relative mx-auto grid max-w-[92rem] gap-16 px-5 md:px-10 lg:grid-cols-12">
-          <div className="lg:col-span-6">
+      <section className="on-light relative isolate overflow-hidden bg-ivory py-24 text-forest md:py-32">
+        <div className="relative mx-auto grid max-w-[76rem] items-center gap-14 px-5 md:grid-cols-[1fr_minmax(0,24rem)] md:gap-20 md:px-10">
+          <div>
             <SectionLabel index="01" className="text-brass-ink">Idéen</SectionLabel>
-            <RevealLines className="mt-8 text-[clamp(2.6rem,5vw,4.6rem)]" lines={["Et moderne bud på", <span key="s">det <em className="display-italic text-terracotta-ink">danske spisested.</em></span>]} />
-          </div>
-          <div className="space-y-6 text-lg text-ink-muted lg:col-span-5 lg:col-start-8">
-            <Reveal>
-              <p className="font-display text-[1.75rem] leading-snug text-forest">
-                Vi vil ikke være en gourmetrestaurant med komplicerede anretninger. Vi vil være et sted, hvor smagen, kvaliteten og den hyggelige betjening er i centrum.
+            <RevealLines className="mt-7 text-[clamp(2.4rem,4.4vw,3.8rem)]" lines={["Et moderne bud på", <span key="s">det <em className="display-italic text-terracotta-ink">danske spisested.</em></span>]} />
+            <Reveal className="mt-8 max-w-xl space-y-4 text-lg text-ink-muted">
+              <p className="font-display text-[1.6rem] leading-snug text-forest">
+                Ikke en gourmetrestaurant med komplicerede anretninger — men et sted, hvor smagen, kvaliteten og den hyggelige betjening er i centrum.
               </p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p>
-                Klassisk dansk mad, lavet af gode råvarer. Et kort, der er til at overskue. Og et lokale med varme lamper, træ, grønne planter og hyggelige kroge, hvor samtalerne får lov at fylde — musikken spiller, men den overdøver ikke.
-              </p>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <p>Det skal være levende og afslappet. Et sted, hvor du føler dig velkommen fra døren går op, til du går hjem — lidt senere, end du havde regnet med.</p>
+              <p>Varme lamper, træ, grønne planter og hyggelige kroge. Musikken spiller, men samtalen fylder mest. Levende og afslappet — og du går hjem lidt senere, end du havde regnet med.</p>
             </Reveal>
           </div>
-        </div>
-
-        <div className="relative mx-auto mt-24 grid max-w-[92rem] gap-6 px-5 md:grid-cols-12 md:px-10">
-          <Parallax distance={40} className="md:col-span-7">
-            <ImageReveal from="left" className="aspect-[16/10] overflow-hidden">
-              <Photo name="bar" sizes="(min-width:768px) 58vw, 100vw" className="h-full" />
+          <div className="relative">
+            <ImageReveal className="aspect-[4/5] overflow-hidden rounded-t-full">
+              <Photo name="bar" sizes="(min-width:768px) 24rem, 90vw" className="h-full" imgClassName="object-[62%_50%]" />
             </ImageReveal>
-          </Parallax>
-          <Parallax distance={-40} className="md:col-span-4 md:col-start-9 md:mt-32">
-            <ImageReveal from="right" className="aspect-[4/5] overflow-hidden">
-              <Photo name="dining" sizes="(min-width:768px) 33vw, 100vw" className="h-full" imgClassName="object-[75%_50%]" />
-            </ImageReveal>
-          </Parallax>
+            <Ornament name="arches" className="absolute -bottom-8 -left-8 size-28 text-brass-ink/60" />
+          </div>
         </div>
       </section>
 
-      <section className="grain relative isolate bg-forest py-28 text-cream md:py-40">
-        <Texture name="forest-tile" opacity={0.15} blend="soft-light" />
-        <div className="relative mx-auto max-w-[92rem] px-5 md:px-10">
+      <section className="grain relative isolate bg-forest py-24 text-cream md:py-32">
+        <div className="relative mx-auto max-w-[76rem] px-5 md:px-10">
           <SectionLabel index="02" className="text-brass">Det, vi står for</SectionLabel>
           <RevealLines className="mt-8 max-w-4xl text-[clamp(2.6rem,5vw,4.6rem)]" lines={["Det, vi ikke går", <em key="i" className="display-italic text-brass-light">på kompromis med.</em>]} />
           <Stagger className="mt-16 grid gap-px overflow-hidden bg-cream/10 sm:grid-cols-2 lg:grid-cols-3">
