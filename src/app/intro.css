@@ -1,0 +1,709 @@
+/* ─────────────────────────────────────────────────────────────
+   INTRO-LOADERE — seks scener (se src/components/intro/)
+   Mål inde i scenerne er i container-enheder (cqw/cqh), så de
+   både kan fylde skærmen og vises som miniaturer i Design Lab.
+   ───────────────────────────────────────────────────────────── */
+
+html.intro-skip #intro { display: none; }
+html.intro-swap #intro > * { visibility: hidden; }
+html.intro-active { overflow: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  #intro { display: none; }
+}
+
+@property --intro-hole {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+.intro {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-io: cubic-bezier(0.76, 0, 0.24, 1);
+  container-type: size;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--color-cream);
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(23, 59, 48, 0.55), transparent 60%),
+    var(--color-forest-night);
+  user-select: none;
+}
+.intro--fixed { position: fixed; inset: 0; z-index: 200; }
+.intro--frame { position: absolute; inset: 0; }
+/* Failsafe uden JavaScript: forsvind af sig selv */
+.intro--fixed { animation: intro-failsafe 0.6s ease 7s forwards; }
+.intro::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: url("/brand/mad-og-mennesker/backgrounds/vector/fine-grain.svg");
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+}
+/* Slutbillede uden animation (miniaturer) */
+.intro.is-still,
+.intro.is-still *,
+.intro.is-still *::before,
+.intro.is-still *::after {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}
+
+.intro-scene {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-inline: 1.5rem;
+  text-align: center;
+}
+
+/* Fælles typografi ------------------------------------------------ */
+.intro-wordmark {
+  margin-top: 2.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 6cqw, 3.1rem);
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  letter-spacing: 0.5em;
+  margin-right: -0.5em;
+  opacity: 0;
+  filter: blur(6px);
+  animation: intro-wordmark 1.4s var(--ease-out) var(--w, 1.5s) forwards;
+}
+.intro-wordmark em {
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-brass);
+}
+.intro-wordmark--small { font-size: clamp(1.25rem, 3.4cqw, 1.9rem); margin-top: 2rem; }
+.intro-tagline {
+  margin-top: 1.1rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.05rem, 3.4cqw, 1.35rem);
+  color: var(--color-brass-light);
+}
+.intro-tagline span {
+  display: inline-block;
+  white-space: pre;
+  opacity: 0;
+  translate: 0 0.4em;
+  animation: intro-word 0.9s var(--ease-out) calc(var(--t, 1.9s) + var(--n, 0) * 0.22s) forwards;
+}
+.intro-tagline--eyebrow {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-brass);
+}
+.intro-skip-btn {
+  position: absolute;
+  z-index: 3;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: currentColor;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+.intro-skip-btn:hover { opacity: 1; }
+
+/* Standard-udgang: mørket løfter sig som et tæppe ----------------- */
+.intro.is-leaving { animation: intro-lift 1.1s var(--ease-io) forwards; }
+.intro.is-leaving .intro-scene { animation: intro-scene-out 0.9s cubic-bezier(0.65, 0, 0.35, 1) forwards; }
+
+/* 1 · GLOBELAMPEN ------------------------------------------------- */
+.intro--lampe .intro-scene { transform: translateY(-4cqh); --w: 1.5s; --t: 1.9s; }
+.intro-lamp {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: 50% -40cqh;
+  animation:
+    intro-drop 1.1s var(--ease-out) both,
+    intro-swing 3.6s ease-in-out 1.1s infinite alternate;
+}
+.intro-cord {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 1px;
+  height: 50cqh;
+  translate: -50% 0;
+  background: linear-gradient(to bottom, rgba(195, 164, 107, 0), rgba(195, 164, 107, 0.75));
+}
+.intro-cap {
+  width: 0.9rem;
+  height: 0.55rem;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(to bottom, #dcc495, #8f7444);
+}
+.intro-globe {
+  width: 4.75rem;
+  height: 4.75rem;
+  margin-top: -1px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 38% 32%, #4a4636 0%, #2c2c22 55%, #1b221c 100%);
+  box-shadow: inset 0 -6px 14px rgba(0, 0, 0, 0.35);
+  animation: intro-ignite 1.2s steps(1, end) 0.9s forwards, intro-glow 1.1s ease-out 1.4s forwards;
+}
+.intro-pool {
+  position: absolute;
+  top: 2.4rem;
+  left: 50%;
+  width: min(46rem, 140cqw);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, rgba(255, 214, 150, 0.22), rgba(255, 200, 120, 0.07) 55%, transparent);
+  opacity: 0;
+  scale: 0.4;
+  animation: intro-pool 1.6s var(--ease-out) 1.35s forwards;
+  pointer-events: none;
+}
+.intro-hairline {
+  display: block;
+  width: 7rem;
+  height: 1px;
+  margin-top: 2rem;
+  background: linear-gradient(to right, transparent, var(--color-brass), transparent);
+  transform: scaleX(0);
+  animation: intro-hairline 2.2s cubic-bezier(0.65, 0, 0.35, 1) 0.4s forwards;
+}
+
+/* 2 · LEVENDE LYS ------------------------------------------------- */
+.intro--lys { background: radial-gradient(90% 70% at 50% 40%, #12291f, var(--color-forest-night) 70%); }
+.intro--lys .intro-scene { --w: 1.6s; --t: 2.05s; }
+.intro-halo {
+  position: absolute;
+  top: 1.2rem;
+  left: 50%;
+  width: min(44rem, 130cqw);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, rgba(255, 196, 120, 0.3), rgba(255, 170, 90, 0.09) 50%, transparent);
+  opacity: 0;
+  scale: 0.3;
+  animation: intro-pool 1.8s var(--ease-out) 1s forwards, intro-breathe 2.6s ease-in-out 2.8s infinite alternate;
+  pointer-events: none;
+}
+.intro-candle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  animation: intro-rise 1s var(--ease-out) 0.15s forwards;
+}
+.intro-flame {
+  position: relative;
+  width: 1.15rem;
+  height: 2.5rem;
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  background: radial-gradient(ellipse 60% 70% at 50% 72%, #fff 0%, #fff4cf 26%, #ffd27a 52%, rgba(244, 150, 64, 0.85) 78%, rgba(244, 150, 64, 0) 100%);
+  box-shadow: 0 0 22px 8px rgba(255, 186, 96, 0.4), 0 -6px 30px 6px rgba(255, 170, 80, 0.18);
+  transform-origin: 50% 92%;
+  scale: 0;
+  animation:
+    intro-flame-on 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) 0.85s forwards,
+    intro-flicker 1.9s ease-in-out 1.6s infinite alternate;
+}
+.intro-flame::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  width: 34%;
+  height: 26%;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(rgba(120, 150, 255, 0.55), transparent 70%);
+}
+.intro-wick { width: 2px; height: 0.55rem; margin-top: -0.3rem; border-radius: 1px; background: #2a2219; }
+.intro-wax {
+  position: relative;
+  width: 2.5rem;
+  height: 7.5rem;
+  border-radius: 4px 4px 2px 2px;
+  background: linear-gradient(90deg, #d9ccb2, #f6efe1 38%, #fbf7ee 52%, #e7dcc6 80%, #cbbd9f);
+}
+.intro-wax::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse 90% 50% at 50% 0%, rgba(255, 196, 110, 0.65), transparent 70%);
+  opacity: 0;
+  animation: intro-fade-in 1s ease 1.15s forwards;
+}
+.intro-holder {
+  width: 5.5rem;
+  height: 0.7rem;
+  margin-top: -1px;
+  border-radius: 9999px;
+  background: linear-gradient(to bottom, #e3cc9c, #8f7444);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+}
+/* Udgang: mørket trækker sig sammen om flammen */
+.intro--lys.is-leaving { animation: intro-iris 1.1s var(--ease-io) forwards; }
+.intro--lys.is-leaving .intro-scene { animation: none; }
+
+/* 3 · BORDET DÆKKES ----------------------------------------------- */
+.intro--bordet {
+  color: var(--color-forest);
+  background:
+    radial-gradient(80% 70% at 50% 40%, rgba(250, 247, 240, 0.85), transparent 75%),
+    repeating-linear-gradient(90deg, transparent 0 0.9rem, rgba(23, 59, 48, 0.022) 0.9rem 1rem),
+    var(--color-linen);
+}
+.intro--bordet::after { opacity: 0.05; mix-blend-mode: multiply; }
+.intro--bordet .intro-scene { --w: 1.55s; --t: 2s; }
+.intro--bordet .intro-wordmark { margin-top: 2.25rem; }
+.intro--bordet .intro-wordmark em,
+.intro--bordet .intro-tagline { color: var(--color-terracotta-ink); }
+.intro-table {
+  width: min(28rem, 78cqw);
+  overflow: visible;
+  stroke: var(--color-forest);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.intro-table path,
+.intro-plate {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.intro-plate { animation: intro-draw 1.3s cubic-bezier(0.65, 0, 0.35, 1) 0.2s forwards; }
+.intro-plate--inner { stroke: var(--color-brass-ink); stroke-width: 0.9; animation-delay: 0.55s; }
+.intro-fork, .intro-knife { opacity: 0; }
+.intro-fork { animation: intro-from-left 1s var(--ease-out) 0.75s forwards; }
+.intro-knife { animation: intro-from-right 1s var(--ease-out) 0.9s forwards; }
+.intro-fork path { animation: intro-draw 1.1s ease-out 0.75s forwards; }
+.intro-knife path { animation: intro-draw 1.1s ease-out 0.9s forwards; }
+/* Udgang: siden åbner sig fra midten af tallerkenen */
+.intro--bordet.is-leaving {
+  -webkit-mask-image: radial-gradient(circle at 50% 38%, transparent var(--intro-hole), #000 calc(var(--intro-hole) + 1px));
+  mask-image: radial-gradient(circle at 50% 38%, transparent var(--intro-hole), #000 calc(var(--intro-hole) + 1px));
+  animation: intro-hole 1.1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+.intro--bordet.is-leaving .intro-scene { animation: intro-fade-out 0.5s ease forwards; }
+
+/* 4 · SEGLET ------------------------------------------------------ */
+.intro--segl .intro-scene { --w: 1.7s; --t: 2.1s; }
+.intro-seal {
+  position: relative;
+  width: min(19rem, 62cqw);
+  aspect-ratio: 1;
+  color: var(--color-brass);
+}
+.intro-seal-ring { position: absolute; inset: 0; overflow: visible; }
+.intro-seal-outer {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transform-box: fill-box;
+  transform-origin: center;
+  rotate: -90deg;
+  animation: intro-draw 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.2s forwards;
+}
+.intro-seal-inner {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 0.6;
+  stroke-dasharray: 2 4;
+  opacity: 0;
+  animation: intro-fade-in 0.8s ease 1.2s forwards;
+}
+.intro-seal-text {
+  fill: currentColor;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  transform-origin: 120px 120px;
+  opacity: 0;
+  animation: intro-seal-text 1.6s var(--ease-out) 0.55s forwards, intro-spin 40s linear 2.1s infinite;
+}
+.intro-seal-stamp {
+  position: absolute;
+  inset: 31%;
+  width: auto;
+  height: auto;
+  opacity: 0;
+  scale: 1.7;
+  animation: intro-stamp 0.55s cubic-bezier(0.5, 0, 0.75, 0) 1.15s forwards;
+}
+.intro-ripple {
+  position: absolute;
+  inset: 27%;
+  border-radius: 9999px;
+  border: 1px solid currentColor;
+  opacity: 0;
+  animation: intro-ripple 1.2s var(--ease-out) 1.68s forwards;
+}
+/* Udgang: seglet zoomer frem, og siden kommer til syne */
+.intro--segl.is-leaving { animation: intro-fade-out 0.8s ease 0.25s forwards; }
+.intro--segl.is-leaving .intro-scene { animation: intro-zoom 1s cubic-bezier(0.7, 0, 0.84, 0) forwards; }
+
+/* 4b · SEGLET — fire udgaver ------------------------------------- */
+.intro-caption { display: flex; flex-direction: column; align-items: center; }
+
+/* Seglet i lak: laksegl på en invitation */
+.intro--lak {
+  color: var(--color-forest);
+  background: radial-gradient(90% 80% at 50% 40%, #fdfaf3, var(--color-cream) 60%, #e7dcc7);
+}
+.intro--lak::after { opacity: 0.06; mix-blend-mode: multiply; }
+.intro--lak .intro-scene { --w: 1.7s; --t: 2.1s; }
+.intro--lak .intro-wordmark em,
+.intro--lak .intro-tagline { color: var(--color-terracotta-ink); }
+.intro--lak .intro-seal { width: min(16rem, 58cqw); color: #4a140b; }
+.intro-lak-wax {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  filter: drop-shadow(0 12px 18px rgba(90, 30, 15, 0.28));
+  scale: 0;
+  animation: intro-wax-pour 0.9s cubic-bezier(0.34, 1.4, 0.64, 1) 0.25s forwards, intro-squish 0.4s ease-out 1.15s;
+}
+.intro-wax-press {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  scale: 0.86;
+  filter: drop-shadow(0 1.5px 0 rgba(255, 200, 175, 0.45)) drop-shadow(0 -1px 0 rgba(30, 6, 2, 0.5));
+  animation: intro-press 0.45s cubic-bezier(0.5, 0, 0.75, 0) 1s forwards;
+}
+.intro--lak .intro-seal-outer,
+.intro--lak .intro-seal-inner,
+.intro--lak .intro-seal-text,
+.intro--lak .intro-seal-stamp { animation: none; opacity: 1; scale: 1; stroke-dashoffset: 0; }
+.intro--lak.is-leaving { animation: intro-slide-up 1.05s var(--ease-io) forwards; }
+
+/* Seglet som urværk: teksten tegnes rundt af en viser, seglet lægger sig ved logoet */
+@property --intro-sweep {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+.intro--ur .intro-scene { --w: 2.15s; --t: 2.45s; }
+.intro--ur .intro-seal {
+  width: min(17rem, 60cqw);
+  --dx: calc(max(2.6rem, 50cqw - 42rem + 4.1rem) - 50cqw);
+  --dy: calc(6.4rem - 50cqh);
+}
+.intro-sweep {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: conic-gradient(#000 var(--intro-sweep), transparent 0);
+  mask-image: conic-gradient(#000 var(--intro-sweep), transparent 0);
+  animation: intro-sweep 2s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+}
+.intro--ur .intro-seal-outer,
+.intro--ur .intro-seal-inner,
+.intro--ur .intro-seal-text { animation: none; opacity: 1; stroke-dashoffset: 0; }
+.intro-hand {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 50%;
+  translate: -50% 0;
+  transform-origin: 50% 100%;
+  background: linear-gradient(to top, transparent 35%, var(--color-brass));
+  opacity: 0;
+  animation: intro-hand 2s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+}
+.intro-hand::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  translate: -50% 0;
+  border-radius: 9999px;
+  background: var(--color-brass-light);
+  box-shadow: 0 0 12px 3px rgba(255, 214, 150, 0.55);
+}
+.intro--ur .intro-seal-stamp { animation-delay: 2.05s; }
+.intro--ur.is-leaving { animation: intro-fade-out 0.6s ease 0.45s forwards; }
+.intro--ur.is-leaving .intro-scene { animation: none; }
+.intro--ur.is-leaving .intro-caption { animation: intro-fade-out 0.3s ease forwards; }
+.intro--ur.is-leaving .intro-seal { animation: intro-dock 1s var(--ease-io) forwards; }
+
+/* Seglet i messing: lysglimt hen over seglet */
+.intro--glans { background: radial-gradient(70% 60% at 50% 42%, #1d2c21, #0b1712 60%, #060e0b); }
+.intro--glans .intro-scene { --w: 1.9s; --t: 2.25s; }
+.intro--glans .intro-seal {
+  width: min(21rem, 66cqw);
+  filter: brightness(0.2);
+  scale: 0.94;
+  animation: intro-emerge 1.4s var(--ease-out) 0.15s forwards;
+}
+.intro--glans .intro-seal-text { opacity: 1; animation: intro-spin 70s linear infinite; }
+.intro--glans .intro-seal-stamp {
+  background-image: linear-gradient(115deg, #8f7444 0%, #d9bf88 40%, #fff4d6 50%, #d9bf88 60%, #8f7444 100%);
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  animation: intro-stamp 0.55s cubic-bezier(0.5, 0, 0.75, 0) 0.45s forwards, intro-sheen 1.8s ease-in-out 1.1s forwards;
+}
+.intro-sparkle {
+  position: absolute;
+  top: 9%;
+  right: 15%;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #fff3d2;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px rgba(255, 232, 180, 0.95));
+  animation: intro-sparkle 1s ease 2.25s forwards;
+}
+.intro--glans.is-leaving {
+  -webkit-mask-image: radial-gradient(circle at 50% 42%, transparent var(--intro-hole), #000 calc(var(--intro-hole) + 1px));
+  mask-image: radial-gradient(circle at 50% 42%, transparent var(--intro-hole), #000 calc(var(--intro-hole) + 1px));
+  animation: intro-hole 1.1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+.intro--glans.is-leaving .intro-scene { animation: intro-zoom-soft 0.9s var(--ease-io) forwards; }
+
+/* Det rullende segl */
+.intro--rul .intro-scene { --w: 1.75s; --t: 2.1s; }
+.intro-roll { position: relative; transform-origin: 50% 100%; animation: intro-settle 0.7s ease-out 1.5s; }
+.intro--rul .intro-seal {
+  width: min(15rem, 54cqw);
+  translate: -75cqw 0;
+  rotate: -540deg;
+  animation: intro-roll-in 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+.intro--rul .intro-seal-outer,
+.intro--rul .intro-seal-inner,
+.intro--rul .intro-seal-text,
+.intro--rul .intro-seal-stamp { animation: none; opacity: 1; scale: 1; stroke-dashoffset: 0; }
+.intro-roll-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: -1.1rem;
+  width: 70%;
+  height: 1rem;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.55), transparent);
+  opacity: 0;
+  animation: intro-fade-in 0.6s ease 1.1s forwards;
+}
+.intro--rul.is-leaving { animation: intro-wipe 1.1s cubic-bezier(0.7, 0, 0.3, 1) forwards; }
+.intro--rul.is-leaving .intro-scene { animation: none; }
+.intro--rul.is-leaving .intro-caption,
+.intro--rul.is-leaving .intro-roll-shadow { animation: intro-fade-out 0.3s ease forwards; }
+.intro--rul.is-leaving .intro-seal { animation: intro-roll-out 1.1s cubic-bezier(0.7, 0, 0.3, 1) forwards; }
+
+@keyframes intro-wax-pour { 0% { scale: 0; } 60% { scale: 1.06; } 100% { scale: 1; } }
+@keyframes intro-squish { 0%, 100% { scale: 1; } 40% { scale: 0.965; } }
+@keyframes intro-press { to { opacity: 1; scale: 0.74; } }
+@keyframes intro-sweep { to { --intro-sweep: 360deg; } }
+@keyframes intro-hand { 0% { rotate: 0deg; opacity: 1; } 90% { opacity: 1; } 100% { rotate: 360deg; opacity: 0; } }
+@keyframes intro-dock { to { translate: var(--dx) var(--dy); scale: 0.16; } }
+@keyframes intro-emerge { to { filter: brightness(1) drop-shadow(0 0 40px rgba(255, 200, 120, 0.14)); scale: 1; } }
+@keyframes intro-sheen { to { background-position: 0 0; } }
+@keyframes intro-sparkle {
+  0% { opacity: 0; scale: 0; rotate: 0deg; }
+  40% { opacity: 1; scale: 1; rotate: 45deg; }
+  100% { opacity: 0; scale: 0.5; rotate: 110deg; }
+}
+@keyframes intro-zoom-soft { to { opacity: 0; transform: scale(1.35); } }
+@keyframes intro-roll-in { to { translate: 0 0; rotate: 0deg; } }
+@keyframes intro-roll-out { from { translate: 0 0; rotate: 0deg; } to { translate: 75cqw 0; rotate: 540deg; } }
+@keyframes intro-settle { 0%, 100% { rotate: 0deg; } 35% { rotate: -3deg; } 70% { rotate: 1.2deg; } }
+@keyframes intro-wipe { from { clip-path: inset(0 0 0 0); } to { clip-path: inset(0 0 0 100%); } }
+
+/* 5 · FACADESKILTET ----------------------------------------------- */
+.intro--facade { background: transparent; }
+.intro--facade::after { display: none; }
+.intro--facade .intro-scene { --t: 2.05s; }
+.intro-door {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  z-index: 1;
+  background:
+    radial-gradient(70% 50% at 50% 30%, rgba(23, 59, 48, 0.6), transparent),
+    linear-gradient(to bottom, #102b22, var(--color-forest-night));
+}
+.intro-door--l { left: 0; box-shadow: inset -1px 0 0 rgba(195, 164, 107, 0.35); }
+.intro-door--r { right: 0; box-shadow: inset 1px 0 0 rgba(195, 164, 107, 0.35); }
+.intro-door::before,
+.intro-door::after {
+  content: "";
+  position: absolute;
+  left: 16%;
+  right: 16%;
+  border: 1px solid rgba(195, 164, 107, 0.22);
+}
+.intro-door::before { top: 9%; bottom: 50%; border-radius: 999px 999px 0 0 / 22cqw 22cqw 0 0; }
+.intro-door::after { top: 54%; bottom: 8%; }
+.intro-knob {
+  position: absolute;
+  top: 52%;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 35%, #f1dcae, #8f7444);
+}
+.intro-door--l .intro-knob { right: 1.1rem; }
+.intro-door--r .intro-knob { left: 1.1rem; }
+.intro-seam {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  translate: -50% 0;
+  background: linear-gradient(to bottom, transparent, rgba(255, 214, 150, 0.85) 30%, rgba(255, 214, 150, 0.85) 70%, transparent);
+  box-shadow: 0 0 24px 6px rgba(255, 200, 120, 0.35);
+  opacity: 0;
+  animation: intro-fade-in 0.9s ease 2.4s forwards;
+}
+.intro-sign {
+  padding: 1.35rem 2.2rem 1.25rem;
+  background: linear-gradient(to bottom, #0f2a22, #0a1f19);
+  border: 1px solid rgba(195, 164, 107, 0.5);
+  box-shadow: 0 0 0 6px rgba(10, 31, 25, 0.9), 0 0 0 7px rgba(195, 164, 107, 0.25), 0 30px 60px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  animation: intro-rise 0.9s var(--ease-out) 0.1s forwards;
+}
+.intro-sign p {
+  display: flex;
+  align-items: baseline;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 5.6cqw, 3.2rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+}
+.intro-sign span {
+  color: rgba(195, 164, 107, 0.22);
+  animation: intro-letter 0.7s steps(1, end) calc(0.65s + var(--i) * 0.075s) forwards;
+}
+.intro-sign .intro-sign-amp { font-style: italic; letter-spacing: 0; margin-inline: 0.12em; }
+.intro-sign-gap { width: 0.45em; }
+/* Udgang: dørene går op */
+.intro--facade.is-leaving { animation: none; }
+.intro--facade.is-leaving .intro-scene { animation: intro-fade-out 0.45s ease forwards; }
+.intro--facade.is-leaving .intro-seam { animation: intro-fade-out 0.6s ease 0.2s forwards; opacity: 1; }
+.intro--facade.is-leaving .intro-door--l { animation: intro-door-l 1s var(--ease-io) 0.12s forwards; }
+.intro--facade.is-leaving .intro-door--r { animation: intro-door-r 1s var(--ease-io) 0.12s forwards; }
+
+/* 6 · TRE LØFTER -------------------------------------------------- */
+.intro--ord { color: var(--color-forest); background: var(--color-cream); }
+.intro--ord::after { opacity: 0.05; mix-blend-mode: multiply; }
+.intro--ord .intro-scene { --w: 2.15s; }
+.intro--ord .intro-wordmark em { color: var(--color-terracotta-ink); }
+.intro-promises { display: flex; flex-direction: column; align-items: center; }
+.intro-promise {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 8cqw, 5.4rem);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+}
+.intro-promise > span {
+  display: block;
+  translate: 0 110%;
+  animation: intro-line-up 1s var(--ease-out) calc(0.3s + var(--n) * 0.5s) forwards;
+}
+.intro-promise-em { font-style: italic; color: var(--color-terracotta-ink); }
+.intro-flourish {
+  width: 7rem;
+  height: 1.6rem;
+  margin-top: 1.6rem;
+  color: var(--color-brass-ink);
+  opacity: 0;
+  animation: intro-fade-in 0.9s ease 1.9s forwards;
+}
+.intro--ord .intro-wordmark { margin-top: 1.2rem; }
+.intro--ord.is-leaving { animation: intro-slide-up 1.05s var(--ease-io) forwards; }
+.intro--ord.is-leaving .intro-scene { animation: intro-scene-out 0.9s ease forwards; }
+
+/* Keyframes ------------------------------------------------------- */
+@keyframes intro-drop { from { transform: translateY(-55cqh); } to { transform: translateY(0); } }
+@keyframes intro-swing { from { rotate: -0.6deg; } to { rotate: 0.6deg; } }
+/* Flimmer: glødetråden prøver et par gange, før den tager fat */
+@keyframes intro-ignite {
+  0%, 22%, 48% { background: radial-gradient(circle at 38% 32%, #fff6e2 0%, #ffe3b0 35%, #e9bd7a 70%, #b8935a 100%); }
+  12%, 34%, 58% { background: radial-gradient(circle at 38% 32%, #6a614a 0%, #3a382c 55%, #1b221c 100%); }
+  70%, 100% { background: radial-gradient(circle at 38% 32%, #fffaf0 0%, #ffe9c2 32%, #f2c98a 62%, rgba(195, 164, 107, 0.85) 100%); }
+}
+@keyframes intro-glow {
+  from { box-shadow: 0 0 0 0 rgba(255, 214, 150, 0); }
+  to { box-shadow: 0 0 44px 12px rgba(255, 214, 150, 0.38), 0 0 120px 40px rgba(255, 200, 120, 0.14); }
+}
+@keyframes intro-pool { to { opacity: 1; scale: 1; } }
+@keyframes intro-breathe { from { opacity: 1; } to { opacity: 0.78; } }
+@keyframes intro-wordmark { to { opacity: 1; filter: blur(0); letter-spacing: 0.22em; margin-right: -0.22em; } }
+@keyframes intro-word { to { opacity: 1; translate: 0 0; } }
+@keyframes intro-hairline { to { transform: scaleX(1); } }
+@keyframes intro-fade-in { to { opacity: 1; } }
+@keyframes intro-fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes intro-rise { from { opacity: 0; translate: 0 1.2rem; } to { opacity: 1; translate: 0 0; } }
+@keyframes intro-flame-on { 0% { scale: 0; } 100% { scale: 1; } }
+@keyframes intro-flicker {
+  0% { transform: skewX(0deg) scaleY(1); }
+  25% { transform: skewX(2deg) scaleY(1.05); }
+  50% { transform: skewX(-1.5deg) scaleY(0.96); }
+  75% { transform: skewX(1deg) scaleY(1.03); }
+  100% { transform: skewX(-2deg) scaleY(1); }
+}
+@keyframes intro-draw { to { stroke-dashoffset: 0; } }
+@keyframes intro-from-left { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
+@keyframes intro-from-right { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+@keyframes intro-seal-text { from { opacity: 0; rotate: -60deg; } to { opacity: 1; rotate: 0deg; } }
+@keyframes intro-stamp { 0% { opacity: 0; scale: 1.7; } 70% { opacity: 1; } 100% { opacity: 1; scale: 1; } }
+@keyframes intro-ripple { from { opacity: 0.7; scale: 0.9; } to { opacity: 0; scale: 1.75; } }
+@keyframes intro-letter {
+  0% { color: rgba(255, 226, 170, 0.9); text-shadow: 0 0 10px rgba(255, 210, 140, 0.8); }
+  15% { color: rgba(195, 164, 107, 0.3); text-shadow: none; }
+  30%, 100% { color: #f7e6bf; text-shadow: 0 0 6px rgba(255, 214, 150, 0.75), 0 0 22px rgba(255, 190, 110, 0.45); }
+}
+@keyframes intro-line-up { to { translate: 0 0; } }
+@keyframes intro-scene-out { to { opacity: 0; transform: translateY(-14cqh) scale(0.96); } }
+@keyframes intro-lift { 0%, 25% { clip-path: inset(0 0 0 0); } 100% { clip-path: inset(0 0 100% 0); } }
+@keyframes intro-iris {
+  0% { clip-path: circle(150% at 50% 41%); }
+  100% { clip-path: circle(0% at 50% 41%); }
+}
+@keyframes intro-hole { to { --intro-hole: 150vmax; } }
+@keyframes intro-zoom { to { opacity: 0; transform: scale(4.5); } }
+@keyframes intro-door-l { to { transform: translateX(-101%); } }
+@keyframes intro-door-r { to { transform: translateX(101%); } }
+@keyframes intro-slide-up { to { transform: translateY(-100%); } }
+@keyframes intro-spin { to { transform: rotate(360deg); } }
+@keyframes intro-failsafe { to { opacity: 0; visibility: hidden; } }
