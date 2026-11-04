@@ -11,6 +11,14 @@ export type PhotoName = keyof typeof photos;
  * er ens overalt. Se også src/content/photo-library.ts.
  */
 export const photoAlt: Record<PhotoName, string> = {
+  "mad-fiskefilet": "Visualisering af smørrebrød med sprødstegt rødspætte, remoulade, radiser, dild og citron på rugbrød",
+  "mad-honsesalat": "Visualisering af smørrebrød med hønsesalat, sprød bacon, stegte champignoner og karse på rugbrød",
+  "mad-leverpostej": "Visualisering af smørrebrød med lun leverpostej, sprød bacon, svampe og syltede agurker på rugbrød",
+  "mad-rullepolse": "Visualisering af smørrebrød med rullepølse, sky, rå løgringe og karse på rugbrød",
+  "mad-kartoffel": "Visualisering af kartoffelmad med nye kartofler, mayonnaise, purløg og sprøde løg på rugbrød",
+  "dessert-aeblekage": "Visualisering af gammeldags æblekage i glasskål med æblemos, ristet rasp, flødeskum og ribsgelé",
+  "dessert-citronfromage": "Visualisering af citronfromage i glasskål med flødeskum, ristede mandler og citronskal",
+  "dessert-pandekager": "Visualisering af foldede pandekager med vaniljeis, hjemmelavet syltetøj og friske bær",
   facade:
     "Visualisering af Mad & Mennesker set udefra om aftenen: mørkegrøn facade med messingbogstaver, globelamper i vinduerne og borde med levende lys på pladsen",
   dining:

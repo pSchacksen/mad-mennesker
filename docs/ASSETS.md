@@ -15,7 +15,7 @@ Siden bruger udelukkende grafik, der er skarp på alle skærme:
 - **Globelamperne** i sidetoppe og hero er tegnet i CSS (radiale gradienter), så de er knivskarpe i enhver opløsning.
 - **Intro-loaderne** (lampe, stearinlys, tallerken og bestik, dørene) er tegnet i CSS og SVG af samme grund.
 
-## Synligt anvendt (35 filer + 17 fotos)
+## Synligt anvendt (35 filer + 25 fotos)
 
 | Asset | Hvor |
 |---|---|
@@ -32,7 +32,7 @@ Siden bruger udelukkende grafik, der er skarp på alle skærme:
 | `backgrounds/vector/leaf-scatter.svg` | Det stiliserede kort på Besøg os |
 | `backgrounds/vector/fine-grain.svg` | Diskret kornstruktur på mørke sektioner og intro-loaderne |
 | 23 `icons/svg/*` | Menukort, Klassikerne, frokost/aften, selskaber, kontaktlinjer, knapper |
-| 17 fotos (mad, rum, bord, stemning) + facade | Se `docs/BILLEDER.md`. Optimeret til AVIF/WebP/JPEG i flere bredder |
+| 25 fotos (mad, dessert, rum, bord, stemning) + facade | Se `docs/BILLEDER.md`. Optimeret til AVIF/WebP/JPEG i flere bredder |
 
 ## Bevidst fravalgt
 

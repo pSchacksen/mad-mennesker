@@ -65,12 +65,12 @@ export const menu: MenuCategory[] = [
     items: [
       { id: "aeg-rejer", image: "mad-aeg-rejer", name: "Æg & rejer", description: "Håndpillede rejer, skiveskåret æg, mayonnaise, dild og citron", price: 145 },
       { id: "roastbeef", image: "mad-roastbeef", name: "Roastbeef", description: "Rosa roastbeef, remoulade, revet peberrod, agurkesalat og ristede løg", price: 125 },
-      { id: "fiskefilet", name: "Fiskefilet", description: "Sprødstegt rødspætte, hjemmelavet remoulade og citron", price: 125 },
-      { id: "honsesalat", name: "Hønsesalat", description: "Med sprød bacon, champignon og frisk karse", price: 115 },
-      { id: "leverpostej", name: "Lun leverpostej", description: "Husets postej med bacon, svampe og syltede agurker", price: 115 },
-      { id: "rullepolse", name: "Rullepølse", description: "Med sky, rå løg og karse", price: 105 },
+      { id: "fiskefilet", image: "mad-fiskefilet", name: "Fiskefilet", description: "Sprødstegt rødspætte, hjemmelavet remoulade og citron", price: 125 },
+      { id: "honsesalat", image: "mad-honsesalat", name: "Hønsesalat", description: "Med sprød bacon, champignon og frisk karse", price: 115 },
+      { id: "leverpostej", image: "mad-leverpostej", name: "Lun leverpostej", description: "Husets postej med bacon, svampe og syltede agurker", price: 115 },
+      { id: "rullepolse", image: "mad-rullepolse", name: "Rullepølse", description: "Med sky, rå løg og karse", price: 105 },
       { id: "sild", image: "mad-sild", name: "Marinerede sild", description: "Rødløg, kapers, karrysalat og rugbrød", price: 95 },
-      { id: "kartoffel", name: "Kartoffelmad", description: "Nye kartofler, mayonnaise, purløg og sprøde løg", price: 95 },
+      { id: "kartoffel", image: "mad-kartoffel", name: "Kartoffelmad", description: "Nye kartofler, mayonnaise, purløg og sprøde løg", price: 95 },
     ],
   },
   {
@@ -123,10 +123,11 @@ export const menu: MenuCategory[] = [
     title: "Dessert",
     kicker: "Fordi der altid er plads til lidt mere",
     icon: "heart",
+    image: "dessert-pandekager",
     items: [
-      { id: "aeblekage", name: "Gammeldags æblekage", description: "Æblemos, ristet rasp, makroner, flødeskum og ribsgelé", price: 89 },
-      { id: "citronfromage", name: "Citronfromage", description: "Let og frisk, med flødeskum og ristede mandler", price: 79 },
-      { id: "pandekager", name: "Pandekager", description: "Med vaniljeis og hjemmelavet syltetøj", price: 95 },
+      { id: "aeblekage", image: "dessert-aeblekage", name: "Gammeldags æblekage", description: "Æblemos, ristet rasp, makroner, flødeskum og ribsgelé", price: 89 },
+      { id: "citronfromage", image: "dessert-citronfromage", name: "Citronfromage", description: "Let og frisk, med flødeskum og ristede mandler", price: 79 },
+      { id: "pandekager", image: "dessert-pandekager", name: "Pandekager", description: "Med vaniljeis og hjemmelavet syltetøj", price: 95 },
     ],
   },
   {
@@ -191,6 +192,15 @@ export const featuredDishes: Array<{
     price: 229,
     icon: "cloche",
     image: "mad-wienerschnitzel",
+  },
+  {
+    id: "dessert",
+    name: "Dessert",
+    line: "Fordi der altid er plads til lidt mere",
+    story: "Gammeldags æblekage med ribsgelé, en let citronfromage eller pandekager med vaniljeis og hjemmelavet syltetøj.",
+    price: { from: 79, to: 95 },
+    icon: "heart",
+    image: "dessert-aeblekage",
   },
   {
     id: "dagens",

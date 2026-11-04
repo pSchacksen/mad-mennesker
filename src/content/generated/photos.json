@@ -31,6 +31,36 @@
     ],
     "blur": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADwAwCdASoYAA4APu1kq04ppaQiMAgBMB2JQBOmUABeixofkrGtiiW4AP7uoZombEOfw/SFbqzIw6aI+M9aHSXuWe0scjkXoKAluYL7UJYFYozmXtpORf7uf/ZraIhDpAA="
   },
+  "dessert-aeblekage": {
+    "width": 1254,
+    "height": 1254,
+    "widths": [
+      480,
+      828,
+      1254
+    ],
+    "blur": "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAAAwBQCdASoYABgAPu1mqk8ppaOiKA1RMB2JYgCdMxx/+BBuHBWnh7eCwCizlknuEZd3AAD+wHMDhdOmcklyYp75heBDGyDNM8egZLRlwWd7wuHg7GpWcYg5OwISSCekBY0mSJlLaNvBBOu7Ykz5u3Rt6Hy1sBJiToJaNCTv20+NAezdzkUuAAAA"
+  },
+  "dessert-citronfromage": {
+    "width": 1254,
+    "height": 1254,
+    "widths": [
+      480,
+      828,
+      1254
+    ],
+    "blur": "data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAAAQBgCdASoYABgAPu1oqU+ppaOiKA1RMB2JZACdMoSER+UB9vo73QsTxfRe7fmGKUOkoLN26ov50gAA/tDci0Sm3sJKrKWWpKmIDFqwkwh/mxQ3m0t1P9zql3iPywuvkvSAQrqi9TViGbgbDBggNPmmtZEbuu27IipheJjjNaQeNRuBUZPJZKaVdqmgAAAA"
+  },
+  "dessert-pandekager": {
+    "width": 1254,
+    "height": 1254,
+    "widths": [
+      480,
+      828,
+      1254
+    ],
+    "blur": "data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAAAwBQCdASoYABgAPu1qrlCppaQiqAqpMB2JZACdMoR5aBCwfanGU1AplNSzMNheKsbYgAD+wHGGwxO79st1Cts8bU/3k9zgDO2NkmtYIDOU4+hpx68LFfKsWglayQia0K3IVPxDbJYvf9NpUQVQBcu/wOcIlUVBa6Vx8JyPMx0wL9TpSktMUc+jl9BPcvXT59r3LHNQAAA="
+  },
   "dining": {
     "width": 1245,
     "height": 1030,
@@ -62,6 +92,16 @@
     ],
     "blur": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAABwBACdASoYAA4APu1kqU4ppaOiMAgBMB2JZgCdMoRwACA+UeWq1WQ3XXKWgAD+4zgrr6slAXrZin/NsXOAhLtd7hdpUozmU5VwyC098T5XM7PGbUYmwambCZlXBpM3B61tfMAA"
   },
+  "mad-fiskefilet": {
+    "width": 1254,
+    "height": 1254,
+    "widths": [
+      480,
+      828,
+      1254
+    ],
+    "blur": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAAAQBQCdASoYABgAPu1mq06ppaQiKA1RMB2JZgC7MxgAr7qLc+72qZGMse4/jq8hGvTgAP7AcYbDE7wBQBX+O0xQaBh/dwygZFozQv/E9ugfWtd4URUjDMR+HtMxfTFER7JBPwJmLIR7n5HCmWvrYax0lLExJFJs2LTHGwayhZls2Vy412vYREcRl5XLXvNuAAA="
+  },
   "mad-frokostbord": {
     "width": 1448,
     "height": 1086,
@@ -72,6 +112,36 @@
       1448
     ],
     "blur": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAABQBACdASoYABIAPu1cq02ppKQiMBgMATAdiUATpmMAK1aBPLNSWUHuSu7AAP6/9/hAUyrpImy3YK0qe6838DN9Bk4/pDkVR8PyY9n7opLylUj5V2G6O4Zeue+HsxtDRSNbfJXQyGelCI7foGQE9f3v8BwAAA=="
+  },
+  "mad-honsesalat": {
+    "width": 1254,
+    "height": 1254,
+    "widths": [
+      480,
+      828,
+      1254
+    ],
+    "blur": "data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAADwBACdASoYABgAPu1qqFAppiOiqA1RMB2JQBOmUAAbm9fIY+Fh9sSlX6uwd0mp4AAA/sBzA4XTptRolOejUCcLmU1emOOXdjT7dXiGoSVPeeZAEkXhDjGjGGM3JgZjt91SSwQadtOkgxxhtcOQpMuiNVtnevjAfmNVgZ5/1qrmWxzGfAAAAA=="
+  },
+  "mad-kartoffel": {
+    "width": 1254,
+    "height": 1254,
+    "widths": [
+      480,
+      828,
+      1254
+    ],
+    "blur": "data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAABQBQCdASoYABgAPu1oqk+ppiOiKA1RMB2JagCsMuOCmA0EAze+/j2/S1E1NCoEjsL6oAAA/tH8nn+ea9z0SnPRqClkiZycf4JWx7EKGYoVdMQIM3/0HkfluvBViuUyIscoYBx6ESuvJhqWxaMMHKMjnFu2Jkg+SMmC5ld3u9Xl/W8tmqcqOGDwdfyXAAAA"
+  },
+  "mad-leverpostej": {
+    "width": 1254,
+    "height": 1254,
+    "widths": [
+      480,
+      828,
+      1254
+    ],
+    "blur": "data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAAAQBQCdASoYABgAPu1or1CppaQiqAqpMB2JZACdMxMEIBCye85Bxp3dXWtUC/fHBl+AAP7AcwOF06bRS7hYN0ypSbZhkpEELkNZq6ii6QTylqSHfnW2N1bh1yNdh79XUvClsqhxXmykl9P+Br0NDb30vpz7YyYs7rEoUGMjyxxDN8FEWQAAAA=="
   },
   "mad-pariserbof": {
     "width": 1448,
@@ -94,6 +164,16 @@
       1672
     ],
     "blur": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAADQAwCdASoYAA4APu1iqU2ppaQiMAgBMB2JYgCdMoACqyrcwyAvyoAA/kEEl3ulI9WO3w8LcCq1lxIedZFwr3crFgXjmUtc2JQ1JrK22W3zEz/MdhEdvpVH1fLXWFPL/r7wh2oFtc4IOF2R9AAAAA=="
+  },
+  "mad-rullepolse": {
+    "width": 1254,
+    "height": 1254,
+    "widths": [
+      480,
+      828,
+      1254
+    ],
+    "blur": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAADwBACdASoYABgAPu1qqFAppaOiqA1RMB2JYgC7MswA8Q6xhvGfggyocYx66DqSCYAA/sBxhsMTvAE6UL96yMspye5i+5NGRdWvCbbmJun5anT1ukzMndHGEagBwOe7pK7tBLYdrKjTAYftFF4aQdYf+/3HUfPkncsOzyx6xP91WRoA"
   },
   "mad-sild": {
     "width": 1672,
