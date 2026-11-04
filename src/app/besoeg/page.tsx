@@ -34,6 +34,7 @@ export default function BesoegPage() {
         lines={["Find os på", <em key="i" className="display-italic text-brass-light">Slotspladsen.</em>]}
         intro="Midt i Randers, bag den grønne facade med messingbogstaverne. Vi glæder os til at byde dig indenfor."
         photo="facade"
+        backdrop="stemning-vaeg"
         ornament="crossed-cutlery"
       >
         <div className="flex flex-wrap items-center gap-8">
@@ -42,7 +43,7 @@ export default function BesoegPage() {
         </div>
       </PageHero>
 
-      <section className="on-light relative isolate bg-ivory py-20 text-forest md:py-28">
+      <section className="on-light relative isolate -mt-10 rounded-t-[50%_2.5rem] md:-mt-16 md:rounded-t-[50%_4.5rem] overflow-hidden bg-ivory py-20 text-forest md:py-28">
         <div className="relative mx-auto grid max-w-[76rem] gap-16 px-5 md:px-10 lg:grid-cols-12">
           <div className="space-y-14 lg:col-span-5">
             <Reveal>
@@ -79,12 +80,12 @@ export default function BesoegPage() {
         </div>
       </section>
 
-      <section className="grain relative isolate overflow-hidden bg-forest py-20 text-cream md:py-28">
+      <section className="grain relative isolate -mt-10 rounded-t-[50%_2.5rem] md:-mt-16 md:rounded-t-[50%_4.5rem] overflow-hidden bg-forest py-20 text-cream md:py-28">
         <div className="relative mx-auto grid max-w-[76rem] gap-16 px-5 md:px-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <SectionLabel className="text-brass">Godt at vide</SectionLabel>
-            <ImageReveal className="mt-10 aspect-[4/3] overflow-hidden" from="left">
-              <Photo name="bar" sizes="(min-width:1024px) 40vw, 100vw" className="h-full" />
+            <ImageReveal className="mt-10 aspect-[4/3] overflow-hidden rounded-tl-[6rem]" from="left">
+              <Photo name="rum-bar" sizes="(min-width:1024px) 30rem, 100vw" className="h-full" imgClassName="object-[45%_50%]" />
             </ImageReveal>
           </div>
           <dl className="divide-y divide-cream/15 lg:col-span-6 lg:col-start-7">

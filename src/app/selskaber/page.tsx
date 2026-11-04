@@ -1,8 +1,10 @@
 import { FrameBorder } from "@/components/brand/FrameBorder";
+import { Photo } from "@/components/media/Photo";
+import { ImageReveal } from "@/components/motion/Parallax";
 import { PageHero } from "@/components/sections/PageHero";
 import { occasions } from "@/components/sections/home/Visit";
 import { InquiryForm } from "@/components/sections/InquiryForm";
-import { BrandIcon, Ornament } from "@/components/brand/BrandIcon";
+import { BrandIcon } from "@/components/brand/BrandIcon";
 import { VectorLayer } from "@/components/brand/Layers";
 import { Reveal, RevealLines, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -31,11 +33,13 @@ export default function SelskaberPage() {
         label="Selskaber"
         lines={["De bedste øjeblikke", <span key="f">fortjener et <em className="display-italic text-brass-light">godt bord.</em></span>]}
         intro="Fødselsdag, jubilæum, firmafrokost eller bare en god grund til at samles. Vi tager gerne imod mindre selskaber og private sammenkomster."
-        photo="private-corner"
+        photo="rum-aftengaester"
+        photoPosition="object-[68%_50%]"
+        backdrop="stemning-vaeg"
         ornament="corner-botanical"
       />
 
-      <section className="on-light relative isolate overflow-hidden bg-cream py-20 text-forest md:py-28">
+      <section className="on-light relative isolate -mt-10 rounded-t-[50%_2.5rem] md:-mt-16 md:rounded-t-[50%_4.5rem] overflow-hidden bg-cream py-20 text-forest md:py-28">
         <div className="relative mx-auto max-w-[76rem] px-5 md:px-10">
           <SectionLabel index="01" className="text-brass-ink">Anledninger</SectionLabel>
           <Stagger className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -65,7 +69,9 @@ export default function SelskaberPage() {
                   </Reveal>
                 ))}
               </ol>
-              <Ornament name="flourish" className="mt-12 h-10 w-28 text-brass-ink" />
+              <ImageReveal className="mt-12 aspect-[16/10] max-w-[30rem] overflow-hidden rounded-tr-[6rem] rounded-bl-[2px]">
+                <Photo name="bord-blomster" sizes="(min-width:1024px) 30rem, 90vw" className="h-full" imgClassName="object-[60%_50%]" />
+              </ImageReveal>
               <p className="mt-6 max-w-sm text-sm text-ink-muted">
                 Har I særlige ønsker til menu, tidspunkt eller borddækning, så skriv det endelig. Vi kan ikke love alt, men vi gør os umage for at finde en god løsning.
               </p>

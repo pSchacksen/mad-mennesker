@@ -12,8 +12,8 @@ import { welcome } from "./storyContent";
 /** Velkomst — kompakt editorial-opslag med ét skarpt foto i bue */
 export function StoryEditorial() {
   return (
-    <section id="velkommen" aria-labelledby="velkommen-titel" className="on-light relative isolate overflow-hidden bg-ivory py-24 text-forest md:py-32">
-      <div className="relative mx-auto grid max-w-[76rem] items-center gap-14 px-5 md:grid-cols-[1fr_minmax(0,26rem)] md:gap-20 md:px-10">
+    <section id="velkommen" aria-labelledby="velkommen-titel" className="on-light relative isolate -mt-10 overflow-hidden rounded-t-[50%_2.5rem] bg-ivory py-24 text-forest md:-mt-16 md:rounded-t-[50%_4.5rem] md:py-32">
+      <div className="relative mx-auto grid max-w-[76rem] items-center gap-14 px-5 md:grid-cols-[1fr_minmax(0,19rem)] md:gap-12 md:px-10 lg:grid-cols-[1fr_minmax(0,26rem)] lg:gap-20">
         <div>
           <SectionLabel index="01" className="text-brass-ink">{welcome.label}</SectionLabel>
           <RevealLines
@@ -32,7 +32,7 @@ export function StoryEditorial() {
         </div>
         <div className="relative">
           <ImageReveal className="aspect-[4/5] overflow-hidden rounded-t-full">
-            <Photo name="dining" sizes="(min-width:768px) 26rem, 90vw" className="h-full" imgClassName="object-[22%_50%]" />
+            <Photo name="bord-opdaekket" sizes="(min-width:768px) 26rem, 90vw" className="h-full" imgClassName="object-[74%_50%]" />
           </ImageReveal>
           <Parallax distance={30} rotate={3} className="pointer-events-none absolute -right-16 -bottom-14 w-[75%]">
             <VectorLayer name="botanical-corner" className="relative! block h-auto w-full" />

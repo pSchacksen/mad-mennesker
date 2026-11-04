@@ -48,13 +48,20 @@ export const booking = { provider: "embed", embedUrl: "https://…" };    // /re
 
 ## Design Lab
 
-`/design-lab/` er internt (ikke linket, `noindex`). Her ligger buddene på intro-loaderen (fem udgaver af Seglet og de øvrige bud), som kan afspilles i en ramme eller i fuld skærm, samt en oversigt over designpakkens assets. Hver loader kan også ses på forsiden med fx `/?intro=segl`. Den loader, siden bruger, vælges med `defaultLoader` i `src/content/design.ts`.
+`/design-lab/` er internt (ikke linket, `noindex`). Fanerne er:
+
+- **Loadere**: fem udgaver af Seglet og de øvrige bud, som kan afspilles i en ramme eller i fuld skærm. Se dem på forsiden med fx `/?intro=segl`.
+- **Hero**: fire hero-varianter (B Mad & mennesker er standard, A Atmosfære, C Immersive bistro, D Lamperne). Se dem på forsiden med `/?hero=atmosfaere`, `/?hero=bistro` eller `/?hero=lamper`.
+- **Køkkenet**: to udgaver af "Det gode danske køkken" (A Retterne skifter er standard, B Fotorulle). Se B på forsiden med `/?koekken=rulle`.
+- **Assets**: oversigt over designpakkens filer.
+
+Standarderne vælges med `defaultLoader`, `defaultHero` og `defaultKitchen` i `src/content/design.ts`. Den offentlige forside viser altid standarderne.
 
 ## Billeder og brand-assets
 
-- Restaurantbillederne er udtrukket i original opløsning fra de fire PDF-visualiseringer (`assets-src/photos/`), beskåret for kanter og konverteret til AVIF/WebP/JPEG i flere bredder med sløret placeholder. De er **konceptvisualiseringer**, og siden præsenterer dem som sådan.
+- Alle billeder er **konceptuelle AI-visualiseringer** (17 mad-, rum- og stemningsbilleder plus de fire PDF-udtræk). Originalerne ligger tabsfrit i `assets-src/photos/`, og `npm run images` laver AVIF/WebP/JPEG i flere bredder med sløret placeholder. Intet skaleres op. `src/content/photo-library.ts` er den centrale oversigt, og **`docs/BILLEDER.md`** viser præcis hvor hvert billede bruges.
 - Designpakke V1 ligger i `public/brand/mad-og-mennesker/`; dokumentationen fra pakken er i `docs/designpakke/`. Se **`docs/ASSETS.md`** for præcis hvor hvert asset bruges.
-- Madfotos mangler endnu; retterne vises med designede, udskiftelige pladsholdere ("Foto følger").
+- Retter vises kun med et billede, der viser netop den ret (`image` i `menu.ts`). Retter uden passende billede vises uden.
 
 ## SEO
 

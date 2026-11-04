@@ -1,11 +1,38 @@
 import { dailySpecial, formatPrice, menuStatus, type MenuItem } from "@/content/menu";
 import { BrandIcon, Ornament } from "@/components/brand/BrandIcon";
+import { Photo } from "@/components/media/Photo";
 import { cn } from "@/lib/cn";
 
-export function MenuLine({ item, dark }: { item: MenuItem; dark?: boolean }) {
+export function MenuLine({
+  item,
+  dark,
+  thumbSlot,
+  onOpen,
+}: {
+  item: MenuItem;
+  dark?: boolean;
+  /** Reservér plads til miniaturer, så navnene står på linje i kategorien */
+  thumbSlot?: boolean;
+  onOpen?: (item: MenuItem) => void;
+}) {
   const price = formatPrice(item.price);
   return (
-    <div className="group py-4">
+    <div className={cn("group flex gap-4 py-4", !thumbSlot && "block")}>
+      {thumbSlot && (
+        <div className="w-12 shrink-0 pt-1 sm:w-14">
+          {item.image && onOpen && (
+            <button
+              type="button"
+              onClick={() => onOpen(item)}
+              aria-label={`Se billede af ${item.name}`}
+              className="group/thumb relative block size-12 overflow-hidden rounded-full ring-1 ring-brass-ink/40 ring-offset-2 ring-offset-cream transition-[box-shadow,transform] duration-500 hover:scale-105 hover:ring-brass-ink sm:size-14"
+            >
+              <Photo name={item.image} decorative sizes="56px" className="h-full" imgClassName="transition-transform duration-700 group-hover/thumb:scale-110" />
+            </button>
+          )}
+        </div>
+      )}
+      <div className="min-w-0 flex-1">
       <div className="flex items-baseline gap-3">
         <h4 className="flex items-center gap-2 font-display text-[1.65rem] leading-tight font-semibold">
           {item.icon && <BrandIcon name={item.icon} className={cn("size-5", dark ? "text-brass" : "text-brass-ink")} />}
@@ -32,6 +59,7 @@ export function MenuLine({ item, dark }: { item: MenuItem; dark?: boolean }) {
           {item.note && <em className={cn("display-italic ml-2 text-lg", dark ? "text-brass-light" : "text-terracotta-ink")}>{item.note}</em>}
         </p>
       )}
+      </div>
     </div>
   );
 }

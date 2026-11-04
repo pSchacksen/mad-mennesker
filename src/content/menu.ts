@@ -7,10 +7,11 @@
  * for planens prisramme og skal godkendes af køkkenet.
  *
  * Hver ret kan have et `image` (nøgle i src/content/generated/photos.json).
- * Uden billede vises en designet pladsholder med et ikon fra designpakken,
- * indtil der foreligger rigtige madfotos.
+ * Billederne er konceptvisualiseringer af retterne. Retter uden billede vises
+ * kun med tekst og et ikon — de får aldrig et tilfældigt billede.
  */
 import type { BrandIconName } from "@/lib/brand-assets";
+import type { PhotoName } from "@/components/media/Photo";
 
 export type Price = number | { from: number; to?: number } | null;
 
@@ -23,7 +24,7 @@ export type MenuItem = {
   note?: string;
   /** Fremhæves som husets klassiker / dagens ret */
   highlight?: boolean;
-  image?: string;
+  image?: PhotoName;
   icon?: BrandIconName;
 };
 
@@ -34,6 +35,8 @@ export type MenuCategory = {
   kicker: string;
   intro?: string;
   icon: BrandIconName;
+  /** Stort introduktionsbillede for kategorien (nøgle i photos.json) */
+  image?: PhotoName;
   items: MenuItem[];
 };
 
@@ -58,14 +61,15 @@ export const menu: MenuCategory[] = [
     kicker: "Fra middagsbordets klassikere",
     intro: "Smurt med omhu på godt rugbrød og franskbrød. Tag to eller tre stykker — eller del med bordet.",
     icon: "smorrebrod",
+    image: "mad-frokostbord",
     items: [
-      { id: "aeg-rejer", name: "Æg & rejer", description: "Håndpillede rejer, skiveskåret æg, mayonnaise, dild og citron", price: 145 },
-      { id: "roastbeef", name: "Roastbeef", description: "Rosa roastbeef, remoulade, revet peberrod, agurkesalat og ristede løg", price: 125 },
+      { id: "aeg-rejer", image: "mad-aeg-rejer", name: "Æg & rejer", description: "Håndpillede rejer, skiveskåret æg, mayonnaise, dild og citron", price: 145 },
+      { id: "roastbeef", image: "mad-roastbeef", name: "Roastbeef", description: "Rosa roastbeef, remoulade, revet peberrod, agurkesalat og ristede løg", price: 125 },
       { id: "fiskefilet", name: "Fiskefilet", description: "Sprødstegt rødspætte, hjemmelavet remoulade og citron", price: 125 },
       { id: "honsesalat", name: "Hønsesalat", description: "Med sprød bacon, champignon og frisk karse", price: 115 },
       { id: "leverpostej", name: "Lun leverpostej", description: "Husets postej med bacon, svampe og syltede agurker", price: 115 },
       { id: "rullepolse", name: "Rullepølse", description: "Med sky, rå løg og karse", price: 105 },
-      { id: "sild", name: "Marinerede sild", description: "Rødløg, kapers, karrysalat og rugbrød", price: 95 },
+      { id: "sild", image: "mad-sild", name: "Marinerede sild", description: "Rødløg, kapers, karrysalat og rugbrød", price: 95 },
       { id: "kartoffel", name: "Kartoffelmad", description: "Nye kartofler, mayonnaise, purløg og sprøde løg", price: 95 },
     ],
   },
@@ -75,6 +79,7 @@ export const menu: MenuCategory[] = [
     kicker: "Retter, man kommer tilbage efter",
     intro: "Det danske køkken, som vi kender det — lavet ordentligt, serveret uden dikkedarer.",
     icon: "cloche",
+    image: "mad-wienerschnitzel-ol",
     items: [
       {
         id: "stjerneskud",
@@ -83,6 +88,7 @@ export const menu: MenuCategory[] = [
         price: 189,
         highlight: true,
         icon: "plate",
+        image: "mad-stjerneskud",
       },
       {
         id: "pariserbof",
@@ -91,6 +97,7 @@ export const menu: MenuCategory[] = [
         price: 179,
         highlight: true,
         icon: "fork-knife",
+        image: "mad-pariserbof",
       },
       {
         id: "wienerschnitzel",
@@ -99,6 +106,7 @@ export const menu: MenuCategory[] = [
         price: 229,
         highlight: true,
         icon: "cloche",
+        image: "mad-wienerschnitzel",
       },
       {
         id: "dagens",
@@ -127,6 +135,7 @@ export const menu: MenuCategory[] = [
     kicker: "Øl, vin, snaps og en god kop kaffe",
     intro: "Vi skænker et udvalg af øl, vin og snaps, der passer til maden, samt sodavand og kaffe. Det fulde drikkekort følger.",
     icon: "wine-glass",
+    image: "rum-bar",
     items: [
       { id: "ol", name: "Øl", description: "Fadøl og et udvalg på flaske", price: null, icon: "beer-glass" },
       { id: "vin", name: "Vin", description: "Hvid, rød og bobler — på glas og flaske", price: null, icon: "wine-glass" },
@@ -145,7 +154,7 @@ export const featuredDishes: Array<{
   story: string;
   price: Price;
   icon: BrandIconName;
-  image?: string;
+  image?: PhotoName;
 }> = [
   {
     id: "smorrebrod",
@@ -154,6 +163,7 @@ export const featuredDishes: Array<{
     story: "Klassiske stykker, smurt med omhu. Bestil et par stykker til dig selv — eller fyld bordet og del.",
     price: { from: 95, to: 145 },
     icon: "smorrebrod",
+    image: "mad-frokostbord",
   },
   {
     id: "stjerneskud",
@@ -162,6 +172,7 @@ export const featuredDishes: Array<{
     story: "Dampet og stegt rødspætte, rejer, asparges og dressing. En ret, der ser ud som en fest — og smager som en.",
     price: 189,
     icon: "plate",
+    image: "mad-stjerneskud",
   },
   {
     id: "pariserbof",
@@ -170,6 +181,7 @@ export const featuredDishes: Array<{
     story: "Saftig bøf på ristet brød med kapers, peberrod, rødbeder, løg og en blank æggeblomme på toppen.",
     price: 179,
     icon: "fork-knife",
+    image: "mad-pariserbof",
   },
   {
     id: "wienerschnitzel",
@@ -178,6 +190,7 @@ export const featuredDishes: Array<{
     story: "Paneret kalv, brasekartofler, ærter og brunet smør. Med garniture, så klart.",
     price: 229,
     icon: "cloche",
+    image: "mad-wienerschnitzel",
   },
   {
     id: "dagens",

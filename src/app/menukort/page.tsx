@@ -19,7 +19,9 @@ export default function MenukortPage() {
         label="Menukort"
         lines={["Klassikerne,", <em key="i" className="display-italic text-brass-light">lavet ordentligt.</em>]}
         intro="Smørrebrød til frokost, varme retter hele dagen og en dessert, der er værd at gemme plads til. Et lille kort — så alt kan laves godt."
-        photo="dining"
+        photo="mad-frokostbord"
+        photoPosition="object-[50%_45%]"
+        backdrop="stemning-lamper"
         ornament="crossed-cutlery"
       >
         <BookingButton size="lg" />

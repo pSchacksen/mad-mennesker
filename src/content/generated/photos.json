@@ -9,6 +9,28 @@
     ],
     "blur": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAAAQBACdASoYAA8APu1iqk4ppaQiMAgBMB2JQBOmUI4ABS6sYyAXrwNsAAD9dUdMP9Rc8ek7t7ptB9zzdUwjlHMDbNXMsYsrKD9tyd/umjqQPD2/sapqgAAA"
   },
+  "bord-blomster": {
+    "width": 1672,
+    "height": 941,
+    "widths": [
+      480,
+      828,
+      1280,
+      1672
+    ],
+    "blur": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADQAwCdASoYAA4APu1krU6ppaSiMAgBMB2JQBOgBDsAgAptyrl5jAAA/tjliER085o/WsKrmJYwjOUBm+BLLhMwZlO7OhZHU6is2lm/IJU4XFv8yZ1TDkgA"
+  },
+  "bord-opdaekket": {
+    "width": 1672,
+    "height": 941,
+    "widths": [
+      480,
+      828,
+      1280,
+      1672
+    ],
+    "blur": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADwAwCdASoYAA4APu1kq04ppaQiMAgBMB2JQBOmUABeixofkrGtiiW4AP7uoZombEOfw/SFbqzIw6aI+M9aHSXuWe0scjkXoKAluYL7UJYFYozmXtpORf7uf/ZraIhDpAA="
+  },
   "dining": {
     "width": 1245,
     "height": 1030,
@@ -29,6 +51,105 @@
     ],
     "blur": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAQBACdASoYABUAPu1qqlEppaOiqAqpMB2JYwC06AWtpLOfV+gto/LoAAD+hPMe3VvuUPbWJ/jQVVVbk4NDCZpu1TrvqydyuhtYrsAKdTFGbYR0fbloitpHqGUPJIvcSQklrZE4IAAAAA=="
   },
+  "mad-aeg-rejer": {
+    "width": 1672,
+    "height": 941,
+    "widths": [
+      480,
+      828,
+      1280,
+      1672
+    ],
+    "blur": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAABwBACdASoYAA4APu1kqU4ppaOiMAgBMB2JZgCdMoRwACA+UeWq1WQ3XXKWgAD+4zgrr6slAXrZin/NsXOAhLtd7hdpUozmU5VwyC098T5XM7PGbUYmwambCZlXBpM3B61tfMAA"
+  },
+  "mad-frokostbord": {
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      828,
+      1280,
+      1448
+    ],
+    "blur": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAABQBACdASoYABIAPu1cq02ppKQiMBgMATAdiUATpmMAK1aBPLNSWUHuSu7AAP6/9/hAUyrpImy3YK0qe6838DN9Bk4/pDkVR8PyY9n7opLylUj5V2G6O4Zeue+HsxtDRSNbfJXQyGelCI7foGQE9f3v8BwAAA=="
+  },
+  "mad-pariserbof": {
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      828,
+      1280,
+      1448
+    ],
+    "blur": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAADwBACdASoYABIAPu1gq1CppKOisBgIATAdiUAABY0jpFTTZ5Y1UEbKNltL1vvhsgAA/tDpdHNX+uz0Zd36u2ovU8LKm8BX+kvKdgT/EzKeQmcPA58rgEqY7n6nXLK6MF5aZhHuUUAuOWXBre7PkzA5bQQAAAAA"
+  },
+  "mad-roastbeef": {
+    "width": 1672,
+    "height": 941,
+    "widths": [
+      480,
+      828,
+      1280,
+      1672
+    ],
+    "blur": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAADQAwCdASoYAA4APu1iqU2ppaQiMAgBMB2JYgCdMoACqyrcwyAvyoAA/kEEl3ulI9WO3w8LcCq1lxIedZFwr3crFgXjmUtc2JQ1JrK22W3zEz/MdhEdvpVH1fLXWFPL/r7wh2oFtc4IOF2R9AAAAA=="
+  },
+  "mad-sild": {
+    "width": 1672,
+    "height": 941,
+    "widths": [
+      480,
+      828,
+      1280,
+      1672
+    ],
+    "blur": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAADwAwCdASoYAA4APu1kqU4ppaOiMAgBMB2JYgCw7CK28+jbxYaRG/gAAP7Y5v8Yv6dwKEYolr2pbXH2GEScCJuw7oG1f64GBK4qnpwXYVHD7WnQ7PHwVGT4GTQAAA=="
+  },
+  "mad-stjerneskud-tomat": {
+    "width": 1672,
+    "height": 941,
+    "widths": [
+      480,
+      828,
+      1280,
+      1672
+    ],
+    "blur": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACQBACdASoYAA4APu1iqk4ppaQiMAgBMB2JZgCdMoR2WCxD0Y1j9tXw6eN+m3gA/r94tXIwA1kdXsTQ3KZGWro9mFZBne9vNfjEq1/S1MCBsN/zBL70RC1B2v4ZRwVe/cAMAaLuNBAAAA=="
+  },
+  "mad-stjerneskud": {
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      828,
+      1280,
+      1448
+    ],
+    "blur": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAAAwBQCdASoYABIAPu1sq1EppaOiqAqpMB2JQBYj60gpAlv9H1tlVUEEKCZwUDlys4IHQAD+0JLV1MzEoezjYnixZQ027MuT6Cb+hU/Q0+1GENUOgg4qc4YgPb6WwENJsjusPtVXoWZv1f5pP+fenl/f+QADykAA"
+  },
+  "mad-wienerschnitzel-ol": {
+    "width": 1672,
+    "height": 941,
+    "widths": [
+      480,
+      828,
+      1280,
+      1672
+    ],
+    "blur": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAABwBACdASoYAA4APu1kqU2ppaQiMAgBMB2JZgCdMoRwACASU/6FsQ7SSucKAAD+2P1yFlNQ3i2F0QCqpBSgeS2rpGURL9z4PmtPElSI0VWAZ4qQdm50SIAnjPFj27Ayi8AAAA=="
+  },
+  "mad-wienerschnitzel": {
+    "width": 1448,
+    "height": 1086,
+    "widths": [
+      480,
+      828,
+      1280,
+      1448
+    ],
+    "blur": "data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAAAQBQCdASoYABIAPu1srlEppaQiqAqpMB2JaACdMoR5aBH5sf5Ls5G080tjBnzJlyJAAP6/8NjsrZJYYfyozPC33Zys5WnV9hp40SocrGTHa2mOE49U3uaPOlFjkrbAL17HmAcvfJFoGr91woH6jsTREAIK1NENYjiKBI8anAAAAA=="
+  },
   "private-corner": {
     "width": 1289,
     "height": 847,
@@ -38,5 +159,71 @@
       1289
     ],
     "blur": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAwBACdASoYABAAPu1kqU2ppaQiMAgBMB2JQBOmUABpuxFWJrCRGoCIGDwA/p1yqz+211Wqvm4VdaL09dgb/T2VJqXpcSMoSX8nSNQnA0Vg6tEhZmV918mqIaCAAA=="
+  },
+  "rum-aftengaester": {
+    "width": 1672,
+    "height": 941,
+    "widths": [
+      480,
+      828,
+      1280,
+      1672
+    ],
+    "blur": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAAAwBACdASoYAA4APu1iqk4ppaQiMAgBMB2JQBOgBD4b2ADKO2zMFagLkWAA/uvf0HBHc8RohsIwz982FevCVTprnSpMmdCN9EWUk2ZpomFbIFMAAAA="
+  },
+  "rum-bar": {
+    "width": 1672,
+    "height": 941,
+    "widths": [
+      480,
+      828,
+      1280,
+      1672
+    ],
+    "blur": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAAAQBACdASoYAA4APu1iqU2ppaQiMAgBMB2JQBOmUI7gBLOlQN3oHfRMzAD+21vkeX2g8mnm2fQi+lC5JjuBqLLhbeMw83XmfoGpfp0QAAA="
+  },
+  "rum-hjorne": {
+    "width": 1672,
+    "height": 941,
+    "widths": [
+      480,
+      828,
+      1280,
+      1672
+    ],
+    "blur": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADQAwCdASoYAA4APu1mqk2ppaQiMAgBMB2JYgCdACHUodg+RfWttAAA/ujIyMwpwnhi0PDNSVwnk/M4tQhM+FKjj0bAsQognc1LtY+SvGy29AAA"
+  },
+  "rum-spisesal": {
+    "width": 1672,
+    "height": 941,
+    "widths": [
+      480,
+      828,
+      1280,
+      1672
+    ],
+    "blur": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAABwAwCdASoYAA4APu1orU6ppiSiMAgBMB2JQBOmUACXaAqnEmAA/u84D3k95yoX4rpMhHB9HsJoUZzz5s2h4h4pz17Yavuo7jnAAA=="
+  },
+  "stemning-lamper": {
+    "width": 1672,
+    "height": 941,
+    "widths": [
+      480,
+      828,
+      1280,
+      1672
+    ],
+    "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADQAwCdASoYAA4APu1kqk4ppaQiMAgBMB2JZACdMoACm/H1ujXfm0AA+43i1zphqO8cL0mjoB1HK5jWgy6Z89ElUwnK5a1esATtKNj3thPLiR96selpLi8uViNj4AAA"
+  },
+  "stemning-vaeg": {
+    "width": 1672,
+    "height": 941,
+    "widths": [
+      480,
+      828,
+      1280,
+      1672
+    ],
+    "blur": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAACQAwCdASoYAA4APu1iqk4ppaQiMAgBMB2JQBOgBERkGR93tyUAAP7Qw/RyTSPGjwyhG3izeJE3uWiSAmjpsqNuBCd90oY/6h0O2TYibhYQOH0gmjlKNrtA3oIAAA=="
   }
 }

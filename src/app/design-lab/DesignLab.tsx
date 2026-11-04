@@ -1,7 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { defaultLoader, loaderOptions, type LoaderId } from "@/content/design";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ComponentType } from "react";
+import { defaultHero, defaultKitchen, defaultLoader, heroOptions, kitchenOptions, loaderOptions, type LoaderId } from "@/content/design";
+import { heroComponents } from "@/components/sections/home/Heroes";
+import { KitchenReel, KitchenShowcase } from "@/components/sections/home/Kitchen";
 import {
   assetUsage,
   iconNames,
@@ -18,7 +20,9 @@ import { INTRO_EXIT_MS } from "@/components/intro/IntroLoader";
 import { buttonStyles } from "@/components/booking/BookingButton";
 import { cn } from "@/lib/cn";
 
-type Tab = "loadere" | "assets";
+type Tab = "loadere" | "hero" | "koekken" | "assets";
+
+const kitchenComponents = { skifter: KitchenShowcase, rulle: KitchenReel } as const;
 
 export function DesignLab() {
   const [tab, setTab] = useState<Tab>("loadere");
@@ -32,13 +36,15 @@ export function DesignLab() {
             Design <em className="display-italic text-brass-light">Lab</em>
           </h1>
           <p className="mt-4 max-w-2xl text-cream/80">
-            Seglet er valgt som intro-loader. Her er fem udgaver af det, og længere nede de øvrige bud. Klik på et billede for at afspille det i
-            rammen, eller se det i fuld skærm. Standarden vælges i <code className="text-brass-light">src/content/design.ts</code>.
+            Her kan loadere, hero-varianter og køkkensektionen afprøves side om side. Forsiden viser altid den anbefalede udgave, og standarden
+            vælges i <code className="text-brass-light">src/content/design.ts</code>. Billederne er konceptuelle AI-visualiseringer.
           </p>
 
           <div role="tablist" aria-label="Design Lab-sektioner" className="mt-10 flex flex-wrap gap-2">
             {([
               { id: "loadere", label: "Loadere" },
+              { id: "hero", label: "Hero" },
+              { id: "koekken", label: "Køkkenet" },
               { id: "assets", label: "Assets" },
             ] as const).map((t) => (
               <button
@@ -58,7 +64,80 @@ export function DesignLab() {
         </div>
       </div>
 
-      {tab === "loadere" ? <LoaderGallery /> : <AssetOverview />}
+      {tab === "loadere" && <LoaderGallery />}
+      {tab === "hero" && (
+        <VariantGallery param="hero" title="Hero" sub="fire udgaver" options={heroOptions} fallback={defaultHero} components={heroComponents} />
+      )}
+      {tab === "koekken" && (
+        <VariantGallery
+          param="koekken"
+          title="Det gode danske køkken"
+          sub="to udgaver"
+          options={kitchenOptions}
+          fallback={defaultKitchen}
+          components={kitchenComponents}
+        />
+      )}
+      {tab === "assets" && <AssetOverview />}
+    </div>
+  );
+}
+
+/* Hero- og køkkenvarianter ─────────────────────────────────────── */
+
+function VariantGallery<T extends string>({
+  param,
+  title,
+  sub,
+  options,
+  fallback,
+  components,
+}: {
+  param: string;
+  title: string;
+  sub: string;
+  options: readonly { id: T; label: string; description: string }[];
+  fallback: T;
+  components: Record<T, ComponentType>;
+}) {
+  const [active, setActive] = useState<T>(fallback);
+  const opt = options.find((o) => o.id === active)!;
+  const Comp: ComponentType = components[active];
+
+  return (
+    <div>
+      <div className="mx-auto max-w-[76rem] px-5 py-14 md:px-10 md:py-16">
+        <h2 className="text-[clamp(2.2rem,4vw,3.4rem)]">
+          {title} <em className="display-italic text-terracotta-ink">{sub}</em>
+        </h2>
+        <div role="radiogroup" aria-label={`Vælg ${title.toLowerCase()}-variant`} className="mt-8 flex flex-wrap gap-2">
+          {options.map((o) => (
+            <button
+              key={o.id}
+              type="button"
+              role="radio"
+              aria-checked={o.id === active}
+              onClick={() => setActive(o.id)}
+              className={cn(
+                "min-h-11 rounded-full px-5 text-sm font-semibold transition-colors",
+                o.id === active ? "bg-forest text-cream" : "border border-forest/25 hover:border-forest",
+              )}
+            >
+              {o.label}
+              {o.id === fallback && <span className="ml-2 text-[0.65rem] tracking-[0.16em] uppercase opacity-70">· anbefalet</span>}
+            </button>
+          ))}
+        </div>
+        <div className="mt-6 flex flex-wrap items-start justify-between gap-6 pb-12 md:pb-20">
+          <p className="max-w-2xl text-ink-muted">{opt.description}</p>
+          <a href={`/?${param}=${opt.id}`} className={buttonStyles("ghost-dark")}>
+            Se på forsiden
+          </a>
+        </div>
+      </div>
+      <div key={active}>
+        <Comp />
+      </div>
     </div>
   );
 }

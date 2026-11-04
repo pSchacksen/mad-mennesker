@@ -74,3 +74,48 @@ export type LoaderId = (typeof loaderOptions)[number]["id"];
 export const defaultLoader: LoaderId = "segl";
 
 export const isLoaderId = (v: unknown): v is LoaderId => loaderOptions.some((o) => o.id === v);
+
+/* ─────────────────────────────────────────────────────────────
+   HERO OG KØKKEN — designvarianter
+   Forsiden bruger standarderne nedenfor. Alle varianter kan ses i
+   Design Lab eller på forsiden med fx `/?hero=atmosfaere&koekken=rulle`.
+   ───────────────────────────────────────────────────────────── */
+export const heroOptions = [
+  {
+    id: "mad-og-mennesker",
+    label: "B — Mad & mennesker",
+    description: "Asymmetrisk opslag: en aften med gæster og et stjerneskud, der lægger sig ind over billedet. Viser både stemning, mad og mennesker på én gang.",
+  },
+  {
+    id: "atmosfaere",
+    label: "A — Atmosfære",
+    description: "Et stort, blødt stemningsbillede med globelamper over hele skærmen, animerede tekstlag og diskret parallax.",
+  },
+  {
+    id: "bistro",
+    label: "C — Immersive bistro",
+    description: "Billedlag i dybden: rummet skifter langsomt i en bue, mens retterne glider forbi i forgrunden.",
+  },
+  {
+    id: "lamper",
+    label: "D — Lamperne (tidligere)",
+    description: "Den hidtidige hero med CSS-globelamper, facaden i en bue og husets segl.",
+  },
+] as const;
+export type HeroId = (typeof heroOptions)[number]["id"];
+export const defaultHero: HeroId = "mad-og-mennesker";
+
+export const kitchenOptions = [
+  {
+    id: "skifter",
+    label: "A — Retterne skifter",
+    description: "Stor typografisk liste med retterne til venstre og et stort madfoto til højre, der skifter med en maskeret overgang. Swipe på mobil.",
+  },
+  {
+    id: "rulle",
+    label: "B — Fotorulle",
+    description: "Store madfotos i en vandret rulle med redaktionel typografi oven på billederne.",
+  },
+] as const;
+export type KitchenId = (typeof kitchenOptions)[number]["id"];
+export const defaultKitchen: KitchenId = "skifter";

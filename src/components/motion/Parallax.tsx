@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, useReducedMotion, useScroll, useTransform, type MotionStyle } from "motion/react";
-import { useRef, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 /**
  * Diskret parallax: flytter indholdet `distance` px i forhold til scroll,
@@ -22,8 +22,17 @@ export function Parallax({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
+  // Mindre bevægelse på smalle skærme, så lag ikke glider ind over teksten
+  const factor = useRef(1);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1023px)");
+    const set = () => (factor.current = mq.matches ? 0.35 : 1);
+    set();
+    mq.addEventListener("change", set);
+    return () => mq.removeEventListener("change", set);
+  }, []);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [distance, -distance]);
+  const y = useTransform(scrollYProgress, (v) => distance * factor.current * (1 - 2 * v));
   const r = useTransform(scrollYProgress, [0, 1], [-rotate, rotate]);
   return (
     <motion.div ref={ref} className={className} style={reduce ? style : { ...style, y, rotate: r }}>

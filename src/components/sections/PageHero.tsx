@@ -12,6 +12,8 @@ export function PageHero({
   lines,
   intro,
   photo,
+  photoPosition,
+  backdrop,
   ornament = "flourish",
   children,
 }: {
@@ -19,12 +21,22 @@ export function PageHero({
   lines: ReactNode[];
   intro?: ReactNode;
   photo?: PhotoName;
+  /** object-position for fotoet i buen, fx "object-[70%_50%]" */
+  photoPosition?: string;
+  /** Blødt, uskarpt stemningsbillede bag hele toppen (kun bokeh-billeder) */
+  backdrop?: PhotoName;
   ornament?: OrnamentName;
   children?: ReactNode;
 }) {
   return (
-    <section className="grain relative isolate overflow-hidden bg-forest-night pt-40 pb-16 text-cream md:pt-40 md:pb-20">
-      <GlobeLamps count={3} />
+    <section className="grain relative isolate overflow-hidden bg-forest-night pt-36 pb-24 text-cream md:pt-40 md:pb-32">
+      {backdrop && (
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <Photo name={backdrop} decorative priority sizes="100vw" className="slow-drift h-full scale-110 blur-[3px]" imgClassName="opacity-40" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,31,25,0.55),rgba(10,31,25,0.85))] md:bg-[linear-gradient(90deg,var(--color-forest-night)_25%,rgba(10,31,25,0.7)_60%,rgba(10,31,25,0.5))]" />
+        </div>
+      )}
+      {!backdrop && <GlobeLamps count={3} />}
       <div className="relative mx-auto grid max-w-[76rem] items-end gap-12 px-5 md:grid-cols-[1fr_minmax(0,20rem)] md:px-10">
         <div>
           <Reveal preset="fade">
@@ -39,9 +51,9 @@ export function PageHero({
           {children && <Reveal delay={0.45} className="mt-8">{children}</Reveal>}
         </div>
         {photo ? (
-          <div className="relative hidden md:block">
-            <ImageReveal immediate delay={0.2} className="aspect-[4/5] overflow-hidden rounded-t-full">
-              <Photo name={photo} priority sizes="20rem" className="h-full" />
+          <div className="relative w-[min(20rem,78vw)] md:w-auto">
+            <ImageReveal immediate delay={0.2} className="aspect-[5/4] overflow-hidden rounded-t-full md:aspect-[4/5]">
+              <Photo name={photo} priority sizes="(min-width:768px) 20rem, 78vw" className="h-full" imgClassName={photoPosition} />
             </ImageReveal>
             <Ornament name={ornament} className="absolute -bottom-5 -left-5 size-16 text-brass" />
           </div>

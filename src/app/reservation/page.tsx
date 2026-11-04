@@ -29,10 +29,13 @@ export default function ReservationPage() {
         label="Reservation"
         lines={["Vi gemmer", <span key="s">et bord <em className="display-italic text-brass-light">til dig.</em></span>]}
         intro="Frokost med kollegerne, middag med vennerne eller bare en hverdag, der fortjener lidt ekstra."
+        photo="bord-opdaekket"
+        photoPosition="object-[74%_50%]"
+        backdrop="stemning-lamper"
         ornament="round-seal"
       />
 
-      <section className="on-light relative isolate overflow-hidden bg-cream py-20 text-forest md:py-28">
+      <section className="on-light relative isolate -mt-10 rounded-t-[50%_2.5rem] md:-mt-16 md:rounded-t-[50%_4.5rem] overflow-hidden bg-cream py-20 text-forest md:py-28">
         <VectorLayer name="arched-panels" className="inset-0 h-full w-full" />
         <div className="relative mx-auto max-w-4xl px-5 md:px-10">
           {booking.provider === "embed" && (

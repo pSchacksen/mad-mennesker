@@ -3,7 +3,9 @@
 import { FrameBorder } from "@/components/brand/FrameBorder";
 import { AnimatePresence, motion } from "motion/react";
 import { useRef, useState, type KeyboardEvent } from "react";
-import { menu } from "@/content/menu";
+import { menu, type MenuItem } from "@/content/menu";
+import { Photo } from "@/components/media/Photo";
+import { DishLightbox } from "./DishLightbox";
 import { BrandIcon, Ornament } from "@/components/brand/BrandIcon";
 import { VectorLayer } from "@/components/brand/Layers";
 import { cn } from "@/lib/cn";
@@ -14,6 +16,8 @@ export function MenuBistrokort({ showDaily = true }: { showDaily?: boolean }) {
   const [active, setActive] = useState(menu[0].id);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const cat = menu.find((c) => c.id === active)!;
+  const [open, setOpen] = useState<MenuItem | null>(null);
+  const hasThumbs = cat.items.some((it) => it.image);
 
   const onKey = (e: KeyboardEvent, i: number) => {
     const dir = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
@@ -84,15 +88,28 @@ export function MenuBistrokort({ showDaily = true }: { showDaily?: boolean }) {
               exit: { opacity: 0, transition: { duration: 0.2 } },
             }}
           >
-            <motion.div variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }} className="text-center">
-              <h3 className="text-4xl md:text-5xl">{cat.title}</h3>
-              <p className="display-italic mt-1 text-xl text-terracotta-ink">{cat.kicker}</p>
-              {cat.intro && <p className="mx-auto mt-4 max-w-xl text-ink-muted">{cat.intro}</p>}
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
+              className={cn(cat.image ? "grid items-center gap-6 sm:grid-cols-[minmax(0,19rem)_1fr] sm:gap-10" : "text-center")}
+            >
+              {cat.image && (
+                <motion.div
+                  className="aspect-[21/9] overflow-hidden rounded-tr-[4rem] sm:aspect-[4/3] sm:rounded-tr-[6rem]"
+                  variants={{ hidden: { clipPath: "inset(0% 0% 100% 0%)" }, show: { clipPath: "inset(0% 0% 0% 0%)", transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } } }}
+                >
+                  <Photo name={cat.image} sizes="(min-width:640px) 19rem, 90vw" className="h-full" />
+                </motion.div>
+              )}
+              <div className={cn(cat.image && "sm:text-left")}>
+                <h3 className="text-4xl md:text-5xl">{cat.title}</h3>
+                <p className="display-italic mt-1 text-xl text-terracotta-ink">{cat.kicker}</p>
+                {cat.intro && <p className={cn("mt-4 max-w-xl text-ink-muted", !cat.image && "mx-auto")}>{cat.intro}</p>}
+              </div>
             </motion.div>
             <div className="mt-8 grid gap-x-14 md:grid-cols-2">
               {cat.items.map((item) => (
                 <motion.div key={item.id} variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0, transition: { ease: [0.22, 1, 0.36, 1], duration: 0.6 } } }} className="border-b border-forest/12">
-                  <MenuLine item={item} />
+                  <MenuLine item={item} thumbSlot={hasThumbs} onOpen={setOpen} />
                 </motion.div>
               ))}
             </div>
@@ -100,6 +117,7 @@ export function MenuBistrokort({ showDaily = true }: { showDaily?: boolean }) {
         </AnimatePresence>
 
         {showDaily && <DailySpecial className="mt-12" />}
+        <DishLightbox item={open} onClose={() => setOpen(null)} />
         <div className="mt-8 flex justify-center">
           <MenuNote />
         </div>

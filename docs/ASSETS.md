@@ -9,12 +9,13 @@ Siden bruger udelukkende grafik, der er skarp på alle skærme:
 
 - **Vektor (SVG)** til ornamenter, ikoner og baggrundsmotiver. Ikoner og ornamenter gengives som CSS-masker
   (`BrandIcon`, `Ornament`), så de kan farves med `currentColor` og holde kontrast på mørke og lyse flader.
-- **Fotos vises aldrig større end deres kildeopløsning.** Visualiseringerne fra PDF'erne er ca. 1.240–1.320 px
-  brede, så de vises i buer, cirkler og kort på højst ca. 30 rem (480 px CSS = 960 px på retina) i stedet for fuld skærmbredde.
+- **Fotos vises aldrig større end deres kildeopløsning.** De 17 AI-visualiseringer er 1.448–1.672 px brede, så skarpe
+  fotos vises højst ca. 760–880 px CSS brede. Kun de bløde stemningsbilleder (`stemning-lamper`, `stemning-vaeg`) bruges
+  i fuld bredde, dæmpet og let sløret. Se **`docs/BILLEDER.md`** for præcis hvilket billede der bruges hvor.
 - **Globelamperne** i sidetoppe og hero er tegnet i CSS (radiale gradienter), så de er knivskarpe i enhver opløsning.
 - **Intro-loaderne** (lampe, stearinlys, tallerken og bestik, dørene) er tegnet i CSS og SVG af samme grund.
 
-## Synligt anvendt (35 filer + 4 fotos)
+## Synligt anvendt (35 filer + 17 fotos)
 
 | Asset | Hvor |
 |---|---|
@@ -31,7 +32,7 @@ Siden bruger udelukkende grafik, der er skarp på alle skærme:
 | `backgrounds/vector/leaf-scatter.svg` | Det stiliserede kort på Besøg os |
 | `backgrounds/vector/fine-grain.svg` | Diskret kornstruktur på mørke sektioner og intro-loaderne |
 | 23 `icons/svg/*` | Menukort, Klassikerne, frokost/aften, selskaber, kontaktlinjer, knapper |
-| Fotos: facade, dining, bar, private-corner | Hero, velkomst, frokost/aften, sidetoppe (beskåret og optimeret til AVIF/WebP/JPEG) |
+| 17 fotos (mad, rum, bord, stemning) + facade | Se `docs/BILLEDER.md`. Optimeret til AVIF/WebP/JPEG i flere bredder |
 
 ## Bevidst fravalgt
 

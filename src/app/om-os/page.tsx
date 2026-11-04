@@ -33,11 +33,13 @@ export default function OmOsPage() {
         label="Om os"
         lines={["Man kommer for maden.", <em key="i" className="display-italic text-brass-light">Man bliver for stemningen.</em>]}
         intro="Mad & Mennesker bliver et nyt spisested på Slotspladsen i hjertet af Randers. Et sted med personlighed og sjæl, hvor god dansk mad og godt selskab mødes."
-        photo="private-corner"
+        photo="rum-hjorne"
+        photoPosition="object-[62%_50%]"
+        backdrop="stemning-lamper"
         ornament="round-seal"
       />
 
-      <section className="on-light relative isolate overflow-hidden bg-ivory py-24 text-forest md:py-32">
+      <section className="on-light relative isolate -mt-10 rounded-t-[50%_2.5rem] md:-mt-16 md:rounded-t-[50%_4.5rem] overflow-hidden bg-ivory py-24 text-forest md:py-32">
         <div className="relative mx-auto grid max-w-[76rem] items-center gap-14 px-5 md:grid-cols-[1fr_minmax(0,24rem)] md:gap-20 md:px-10">
           <div>
             <SectionLabel index="01" className="text-brass-ink">Idéen</SectionLabel>
@@ -51,14 +53,14 @@ export default function OmOsPage() {
           </div>
           <div className="relative">
             <ImageReveal className="aspect-[4/5] overflow-hidden rounded-t-full">
-              <Photo name="bar" sizes="(min-width:768px) 24rem, 90vw" className="h-full" imgClassName="object-[62%_50%]" />
+              <Photo name="rum-spisesal" sizes="(min-width:768px) 24rem, 90vw" className="h-full" imgClassName="object-[40%_50%]" />
             </ImageReveal>
             <Ornament name="arches" className="absolute -bottom-8 -left-8 size-28 text-brass-ink/60" />
           </div>
         </div>
       </section>
 
-      <section className="grain relative isolate bg-forest py-24 text-cream md:py-32">
+      <section className="grain relative isolate -mt-10 rounded-t-[50%_2.5rem] md:-mt-16 md:rounded-t-[50%_4.5rem] overflow-hidden bg-forest py-24 text-cream md:py-32">
         <div className="relative mx-auto max-w-[76rem] px-5 md:px-10">
           <SectionLabel index="02" className="text-brass">Det, vi står for</SectionLabel>
           <RevealLines className="mt-8 max-w-4xl text-[clamp(2.6rem,5vw,4.6rem)]" lines={["Det, vi ikke går", <em key="i" className="display-italic text-brass-light">på kompromis med.</em>]} />
