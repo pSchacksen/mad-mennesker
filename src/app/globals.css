@@ -61,6 +61,46 @@
   to { opacity: 1; }
 }
 
+/* Hero: lamper der svinger, lysprikker der stiger, levende lys i vinduerne */
+.lamp-sway { animation: lamp-sway 7s ease-in-out infinite alternate; }
+@keyframes lamp-sway {
+  from { rotate: -1.4deg; }
+  to { rotate: 1.4deg; }
+}
+.mote {
+  position: absolute;
+  border-radius: 9999px;
+  background: #ffdca3;
+  box-shadow: 0 0 6px 2px rgba(255, 200, 120, 0.45);
+  opacity: 0;
+  animation: mote 13s linear infinite;
+}
+@keyframes mote {
+  0% { opacity: 0; transform: translate3d(0, 0, 0); }
+  15% { opacity: 0.75; }
+  70% { opacity: 0.45; }
+  100% { opacity: 0; transform: translate3d(var(--dx), -26vh, 0); }
+}
+.candle-flicker { animation: candle-flicker 5s ease-in-out infinite; }
+@keyframes candle-flicker {
+  0%, 100% { opacity: 0.75; }
+  12% { opacity: 0.9; }
+  20% { opacity: 0.68; }
+  34% { opacity: 0.95; }
+  48% { opacity: 0.78; }
+  61% { opacity: 1; }
+  75% { opacity: 0.72; }
+  88% { opacity: 0.9; }
+}
+.slow-drift { animation: slow-drift 22s ease-in-out infinite alternate; }
+@keyframes slow-drift {
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to { transform: scale(1.07) translate3d(-1.5%, -1%, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motes { display: none; }
+}
+
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
