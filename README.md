@@ -59,7 +59,7 @@ Standarderne vælges med `defaultLoader`, `defaultHero` og `defaultKitchen` i `s
 
 ## Billeder og brand-assets
 
-- Alle billeder er **konceptuelle AI-visualiseringer** (17 mad-, rum- og stemningsbilleder plus de fire PDF-udtræk). Originalerne ligger tabsfrit i `assets-src/photos/`, og `npm run images` laver AVIF/WebP/JPEG i flere bredder med sløret placeholder. Intet skaleres op. `src/content/photo-library.ts` er den centrale oversigt, og **`docs/BILLEDER.md`** viser præcis hvor hvert billede bruges.
+- Alle billeder er **konceptuelle AI-visualiseringer** (25 mad-, dessert-, rum- og stemningsbilleder plus de fire PDF-udtræk). Originalerne ligger tabsfrit i `assets-src/photos/`, og `npm run images` laver AVIF/WebP/JPEG i flere bredder med sløret placeholder. Intet skaleres op. `src/content/photo-library.ts` er den centrale oversigt, og **`docs/BILLEDER.md`** viser præcis hvor hvert billede bruges.
 - Designpakke V1 ligger i `public/brand/mad-og-mennesker/`; dokumentationen fra pakken er i `docs/designpakke/`. Se **`docs/ASSETS.md`** for præcis hvor hvert asset bruges.
 - Retter vises kun med et billede, der viser netop den ret (`image` i `menu.ts`). Retter uden passende billede vises uden.
 

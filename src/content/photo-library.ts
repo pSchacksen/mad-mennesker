@@ -26,6 +26,14 @@ export type PhotoEntry = {
 };
 
 export const photoLibrary: Record<PhotoName, PhotoEntry> = {
+  "mad-fiskefilet": { kind: "mad", subject: "Smørrebrød: fiskefilet med remoulade (1:1)", dish: "fiskefilet", maxCss: 660 },
+  "mad-honsesalat": { kind: "mad", subject: "Smørrebrød: hønsesalat med bacon og champignon (1:1)", dish: "honsesalat", maxCss: 660 },
+  "mad-leverpostej": { kind: "mad", subject: "Smørrebrød: lun leverpostej med bacon og svampe (1:1)", dish: "leverpostej", maxCss: 660 },
+  "mad-rullepolse": { kind: "mad", subject: "Smørrebrød: rullepølse med sky og løg (1:1)", dish: "rullepolse", maxCss: 660 },
+  "mad-kartoffel": { kind: "mad", subject: "Smørrebrød: kartoffelmad med sprøde løg (1:1)", dish: "kartoffel", maxCss: 660 },
+  "dessert-aeblekage": { kind: "mad", subject: "Gammeldags æblekage i glasskål (1:1)", dish: "aeblekage", maxCss: 660 },
+  "dessert-citronfromage": { kind: "mad", subject: "Citronfromage med mandler (1:1)", dish: "citronfromage", maxCss: 660 },
+  "dessert-pandekager": { kind: "mad", subject: "Pandekager med vaniljeis og syltetøj (1:1)", dish: "pandekager", maxCss: 660 },
   "mad-stjerneskud": { kind: "mad", subject: "Stjerneskud med asparges og rogn (4:3)", dish: "stjerneskud", maxCss: 760 },
   "mad-stjerneskud-tomat": { kind: "mad", subject: "Stjerneskud, alternativ anretning (16:9)", dish: "stjerneskud", maxCss: 880, notes: "Reserve; har tomat, som ikke står i beskrivelsen" },
   "mad-pariserbof": { kind: "mad", subject: "Pariserbøf med æggeblomme (4:3)", dish: "pariserbof", maxCss: 760 },
